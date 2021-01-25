@@ -40,6 +40,8 @@ public class OperatorPrecedence {
 		
 		boolean test3 = 3 + 4 * 5 - 2 > (3+4) * (5-2) || 7 > 3;
 		System.out.println(test3); // returns => TRUE
+		
+		
 	};
 	
 	
