@@ -12,6 +12,15 @@ public class Lesson04 {
 		LogicOperators logic = new LogicOperators();
 		logic.inClassWork();
 		
+		RelationalOperators rela = new RelationalOperators();
+		rela.inClassWork();
+		
+		UnaryOperators  uni = new UnaryOperators();
+		uni.inClassWork();
+		
+		
+		OperatorPrecedence op = new OperatorPrecedence();
+		op.inClassWork();
 	}
 
 }

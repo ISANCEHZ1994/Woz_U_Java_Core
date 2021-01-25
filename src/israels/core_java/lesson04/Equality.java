@@ -43,7 +43,7 @@ public class Equality {
 		//e.setSex(Sex.MALE); // this will make e.equals(e2) false!
 		Elephant e2 = new Elephant();
 //		e2 = null;
-		System.out.println(e == e2); // will ALWAYS be false
+		System.out.println(e == e2); // will ALWAYS be false - UNLESS changed!
 		System.out.println(e.equals(e2)); // true
 	};
 	
