@@ -13,11 +13,22 @@ public class Animal {
 	
 	// This is an INSTANCE REFERENCE VARIABLE
 	private String type;
-	public String getType() {return type;};
-	final protected void setType(String t) { // we use protected - means that not only those from package 
-		// but ones that are extended to it - SUCH AS ELEPHANT Class! - ENCAPSOLATION
-		type = t;
-	};
+	public String getType() { 
+		String t = "";
+		if(age == 0) {
+			t = "baby " + type;
+		}else if( age > 12) {
+			t = " this animal is a baby! "; 
+		}else if(age <= 12) {
+			t = " this is a juvenile animal that is at Maturity!";
+		}else if( age >= 50) {
+			t = " t";
+		}
+		return t;
+		};
+	final protected void setType( String t) { type = t; };
+	// we use protected - means that not only those from package 
+	// but ones that are extended to it - SUCH AS ELEPHANT Class! - ENCAPSOLATION
 	
 	private int age;
 	public int getAge() { return age; };

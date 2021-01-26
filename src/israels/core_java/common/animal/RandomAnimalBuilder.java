@@ -12,7 +12,7 @@ import israels.core_java.common.animal.reptiles.*;
 public class RandomAnimalBuilder {
 // --------------------------> VARIABLES SECTION <----------------------------------------------------------
 	private AnimalType type = null;
-	
+	private Class species = null;
 	
 // --------------------------> CONSTRUCTOR SECTION <----------------------------------------------------------
 	
@@ -20,6 +20,10 @@ public class RandomAnimalBuilder {
 		// TODO Auto-generated constructor stub
 		
 	};
+	
+	public RandomAnimalBuilder(Class cls) {
+		species = cls;
+	}
 	
 	// We are using this Constructor to build Random Animals of a specifc type
 	public RandomAnimalBuilder(AnimalType t) {
@@ -36,6 +40,8 @@ public class RandomAnimalBuilder {
 			
 			if(type != null) {
 				a = buildType(type);
+			}else if(species != null){
+				a = buildClass();	
 			}else {
 				a = buildRandom();
 			}
@@ -88,6 +94,17 @@ public class RandomAnimalBuilder {
 				a = buildDomestic(); break;
 			}
 			return a;
+		};
+		
+		private Animal buildClass() {
+			Animal newAnimal = null;
+			String className = species.getCanonicalName();
+			try {
+				newAnimal = (Animal)Class.forName(className).newInstance();
+			} catch (Exception e) {
+			  e.printStackTrace();
+			} 
+			return newAnimal;
 		};
 		
 		private Animal buildZoo() {

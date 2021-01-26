@@ -1,4 +1,4 @@
-package lesson05;
+package israels.core_java.lesson05;
 
 public class Lesson05 {
 

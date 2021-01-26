@@ -1,11 +1,8 @@
 package israels.core_java.common.animal.mammals;
 
 public class Gazelle extends Mammal {
-
-	public Gazelle() {
-		
-		setType("gazelle");
-		setMaxRunningSpeed(50);
+	
+	{
 		MAX_AGE = 15;
 		MATURITY = 2;
 		BIRTH_WEIGHT = 5;
@@ -13,6 +10,13 @@ public class Gazelle extends Mammal {
 		ADULT_FEMALE_MAX_WEIGHT = 55;
 		ADULT_MALE_MIN_WEIGHT = 44;
 		ADULT_MALE_MAX_WEIGHT = 77;
+	}
+
+	public Gazelle() {
+		
+		setType("gazelle");
+		setMaxRunningSpeed(50);
+		
 	}
 	
 	
@@ -26,8 +30,12 @@ public class Gazelle extends Mammal {
 	};
 	
 	public void eat() {
-	
-		System.out.println(getType() + " eats peacefully on the plains..");
+		if(getAge() == 0) {
+			System.out.println(getType() + " nurses on mother's milk");
+		}else {
+			System.out.println(getType() + " eats peacefully on the plains..");
+		}
+		
 	};
 
 }
