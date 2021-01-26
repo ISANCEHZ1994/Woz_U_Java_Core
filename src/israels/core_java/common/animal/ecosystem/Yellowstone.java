@@ -1,7 +1,3 @@
-package israels.core_java.common.animal.ecosystem;
-
-
-
 /**
  * @author Israel S. Sanchez
  * 
@@ -17,11 +13,13 @@ package israels.core_java.common.animal.ecosystem;
  * Bison, 
  * Elk
  * },
- * 
- * 
- * 
- *
  */
+
+package israels.core_java.common.animal.ecosystem;
+
 public class Yellowstone extends Ecosystem {
+	
+	
+	
 	
 }

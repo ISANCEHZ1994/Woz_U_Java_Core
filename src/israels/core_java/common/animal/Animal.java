@@ -80,6 +80,10 @@ public class Animal {
 		};
 	};
 	
+	private boolean targeted = false;
+	public boolean isTargeted() { return targeted;};
+	public void setTargeted(boolean b) { targeted = b;}  ;
+	
 // --------------------------> CONSTRUCTOR SECTION <----------------------------------------------------------
 	static {
 		 System.out.println("In the Animal STATIC initialization Block"); // static - it only runs the FIRST TIME it is loaded
@@ -218,6 +222,17 @@ public class Animal {
 		}else {
 			System.out.println("Female " + getType() + " is not old enough.");
 			return null;
+		}
+	};
+	
+	public void changeHealth(int x) { 
+		int newHealth = health + x;
+		if(newHealth > 10) {
+			health = 10;
+		}else if(newHealth < -10) {
+			health = -10;
+		}else {
+			health = (byte)newHealth; // remember that we have it set as byte all the way up
 		}
 	};
 	

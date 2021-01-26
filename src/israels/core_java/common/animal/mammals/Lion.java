@@ -1,5 +1,6 @@
-package israels.core_java.common.animal.mammals;
 
+
+package israels.core_java.common.animal.mammals;
 import israels.core_java.common.animal.Sex;
 
 //import israels.core_java.common.animal.mammals;
