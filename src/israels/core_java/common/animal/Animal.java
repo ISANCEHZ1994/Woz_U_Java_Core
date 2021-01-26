@@ -46,13 +46,9 @@ public class Animal {
 	public int getMaxAge() {return MAX_AGE;};
 
 	private int weight; // <= REMINDER: private means its only visible to itself!
-	public int getWeight() {
-		return weight;
-	};
+	public int getWeight() { return weight; };
 	public void setWeight(int w) { // REMINDER: void doesn't return a type
-		if(w >= 0) {
-			weight = w;
-		}
+		if(w >= 0) { weight = w; }
 	};
 	
 	private Sex sex = Sex.FEMALE; // From the Sex Enum inside common.animal (Sex.java)
