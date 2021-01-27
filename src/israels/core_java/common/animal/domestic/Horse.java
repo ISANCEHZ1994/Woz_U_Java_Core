@@ -1,7 +1,8 @@
-package israels.core_java.common.animal.mammals;
+package israels.core_java.common.animal.domestic;
 
 import israels.core_java.common.Nameable;
 import israels.core_java.common.animal.Domesticatable;
+import israels.core_java.common.animal.mammals.Mammal;
 
 //import israels.core_java.common.animal.mammals;
 

@@ -23,8 +23,8 @@
 
 package israels.core_java.lesson02;
 
-import israels.core_java.common.animal.mammals.Cat;
-import israels.core_java.common.animal.mammals.Dog;
+import israels.core_java.common.animal.domestic.Cat;
+import israels.core_java.common.animal.domestic.Dog;
 import israels.core_java.common.animal.mammals.Lion;
 
 public class Interfaces { 

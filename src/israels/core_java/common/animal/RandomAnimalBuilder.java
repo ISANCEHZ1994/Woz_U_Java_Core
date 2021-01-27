@@ -1,10 +1,17 @@
 package israels.core_java.common.animal;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 import israels.core_java.common.animal.birds.*;
+import israels.core_java.common.animal.domestic.Cat;
+import israels.core_java.common.animal.domestic.Dog;
+import israels.core_java.common.animal.domestic.Horse;
 import israels.core_java.common.animal.fish.*;
 import israels.core_java.common.animal.mammals.*;
 import israels.core_java.common.animal.reptiles.*;
@@ -13,6 +20,11 @@ public class RandomAnimalBuilder {
 // --------------------------> VARIABLES SECTION <----------------------------------------------------------
 	private AnimalType type = null;
 	private Class species = null;
+	
+	// Variables for file handling
+	private Path parentDir = Paths.get("src", "israels","core_java", "common","animal");
+	private String parentPkg = "israels.core_java.common.animal";
+	private boolean debug = false;
 	
 // --------------------------> CONSTRUCTOR SECTION <----------------------------------------------------------
 	
@@ -199,8 +211,51 @@ public class RandomAnimalBuilder {
 			
 		};
 		
-
+		private List<String> getClassList(String subDir){ // this will give us a file representation of the package name
+			Path dir = Paths.get(parentDir.toString(), subDir);
+			List<String> classes = new CopyOnWriteArrayList<>();
+			String pkg = parentPkg + "." + subDir; // has to be a DOT - NOT anything else!!
+			if(debug) {
+				System.out.println(dir);
+				System.out.println(pkg);
+			}
+			File entry = dir.toFile(); // just a convertion function
+			if(entry.isDirectory()) {
+				String[] entryNames = entry.list();
+				for(String fileName : entryNames) {
+						String clsName = pkg + '.' + fileName.substring(0, fileName.indexOf("."));
+						if(debug) System.out.println("Found: " + clsName);
+						classes.add(clsName);
+				}
+			}
+			// Loop through the list and attempt to instantiate the class
+			for(String clsName : classes) {
+				Animal a = null;
+				try {
+					a = (Animal)Class.forName(clsName).newInstance();
+				}catch(ClassNotFoundException | IllegalAccessException e) {
+					e.printStackTrace();
+					System.exit(1);
+				}catch(InstantiationException ie) {
+					// Remove abstract classes or interfaces
+					if(debug) System.out.println("Removing " + clsName + " from class list");
+					classes.remove(clsName);
+				}
+			}
+			
+			return classes;
+		}; // getClassList
+		
+		public void testGetClassList(String subDir) {
+			debug = true; // this will show the file path in the console - turn on
+			List<String> classes = getClassList(subDir);
+			for( String s : classes ) {
+				System.out.println(s);
+			}
+			debug = false; // turn off
+		}; // closes testGetClassList
 		
 
-};
+
+};// closes class                             
 	

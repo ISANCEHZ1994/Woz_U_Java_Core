@@ -14,6 +14,9 @@ package israels.core_java.lesson03;
 
 import israels.core_java.common.animal.mammals.*;
 import israels.core_java.common.animal.*;
+import israels.core_java.common.animal.domestic.Cat;
+import israels.core_java.common.animal.domestic.Dog;
+import israels.core_java.common.animal.domestic.Horse;
 
 public class VariableCasting {
 	

@@ -2,6 +2,7 @@ package israels.core_java.lesson03;
 
 import israels.core_java.common.animal.Animal;
 import israels.core_java.common.animal.Sex;
+import israels.core_java.common.animal.domestic.Dog;
 import israels.core_java.common.animal.mammals.*;
 
 public class ReturnTypes {

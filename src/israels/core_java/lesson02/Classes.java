@@ -16,6 +16,7 @@
 package israels.core_java.lesson02;
 
 import israels.core_java.common.animal.Animal;
+import israels.core_java.common.animal.domestic.Horse;
 import israels.core_java.common.animal.fish.*;
 import israels.core_java.common.animal.mammals.*; 
 // instead of importing everything separately

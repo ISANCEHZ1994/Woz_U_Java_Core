@@ -1,5 +1,6 @@
-package israels.core_java.common.animal.mammals;
+package israels.core_java.common.animal.domestic;
 import israels.core_java.common.animal.Pet;
+import israels.core_java.common.animal.mammals.Carnivora;
 
 
 // NOTE: it WAS Nameable, Domesticatable - HOWEVER Pet does both!
