@@ -139,13 +139,14 @@ public class Cheetah extends Carnivora {
 		public boolean catchPrey(Animal target) {
 			int age = getAge();
 			double probability = Math.random();
+			
 			if (age > MAX_AGE) return false;
 			
 			if (target != null) {
 				System.out.println(this + " chasing a " + target + " with a health of " + target.getHealth());
 				target.move();
-				changeHealth(-1);
-				target.changeHealth(-1);
+				changeHealth(-2);
+				target.changeHealth(-2);
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) { e.printStackTrace(); }

@@ -58,6 +58,7 @@ public abstract class Carnivora extends Mammal implements Carnivore {
 	public Animal findPrey(List<? extends Animal> nearbyAnimals) {
 		// Looking for prey takes energy, so decrease the health
 		changeHealth(-1);
+		
 		// Scan the nearby animals to see if any are on the preferred list
 		List<Animal> possibleTargets = new ArrayList<>();
 		System.out.print(this + " sees ");
@@ -78,9 +79,32 @@ public abstract class Carnivora extends Mammal implements Carnivore {
 		
 		// Set up the process of selecting a target in its own thread - we want them to act alone(their own thread)
 			Animal target = null;
-			// Find the weakest target
-			
-			// Set the target in preyFound
+			synchronized(nearbyAnimals) { //synchronized - prevents bad things from happening 
+				// when you use more than one thread
+				
+				// Find the weakest target
+				if(possibleTargets.size() > 0) {
+					for(Animal a : possibleTargets) {
+						if( a.isTargeted() ) continue;
+						if( target == null ) {
+							target = a;
+						}else if ( a.getHealth() < target.getHealth() ){
+							target = a;
+						}
+ 					}
+				} 
+				
+				// Set the target in preyFound
+				if(target == null) {
+					System.out.println(this + " could not find prey!"); // this NOT getType because we want the individual animal 
+					preyFound = null;
+				}else {
+					target.setTargeted(true);
+					preyFound = target.getType();
+					System.out.println(this + " selected a " + target);
+				}
+				
+			};
 			
 		// Return the target to use in the catchPrey method
 		return target;
