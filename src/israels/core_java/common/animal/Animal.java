@@ -37,9 +37,11 @@ public class Animal {
 		// its not obvious so the scope will be hard to detect
 		if(a < 0) {
 			age = 0;
+			throw new AgeException(a, MAX_AGE, this.getClass());
 		}else if(a > MAX_AGE) {
 			age = a + 1;
 			System.out.println(this.toString() + " has passed ");
+			throw new AgeException(a, MAX_AGE, this.getClass());
 		} else {
 			age = a;
 		}
@@ -76,7 +78,9 @@ public class Animal {
 	};
 	public void setHealth(byte b) {
 		if(b <= 10 && b >= -10) {
-			health = b;
+			health = b;	
+		}else{ // this is if you try to set the health 
+			throw new IllegalArgumentException("Health must be between -10 and +10 incluisve");
 		};
 	};
 	
@@ -86,18 +90,18 @@ public class Animal {
 	
 // --------------------------> CONSTRUCTOR SECTION <----------------------------------------------------------
 	static {
-		 System.out.println("In the Animal STATIC initialization Block"); // static - it only runs the FIRST TIME it is loaded
+//		 System.out.println("In the Animal STATIC initialization Block"); // static - it only runs the FIRST TIME it is loaded
 	};
 	
 	{ // this is an INITIALIZATION Block
-		System.out.println("In the animal initialization block <=============");	
+//		System.out.println("In the animal initialization block <=============");	
 		++count;
 		type = "UKNOWN ANIMAL ";
 	};
 	
 	
 	public Animal () { 
-		System.out.println("IN animal no-arg constructor"); // this had both ++count; type = "UKNOWN ANIMAL ";
+//		System.out.println("IN animal no-arg constructor"); // this had both ++count; type = "UKNOWN ANIMAL ";
 	};
 	
 	// This is OVERLOADING THE CONSTRUCTOR

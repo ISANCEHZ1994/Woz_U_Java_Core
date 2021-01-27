@@ -132,28 +132,53 @@ public class RandomAnimalBuilder {
 			return animal;
 		}
 			
+		private List<String> mammalClasses = null;
 		
 		private Mammal buildMammal() {
 			Mammal newMammal = null;
 			
-			switch (ThreadLocalRandom.current().nextInt(5)){
-				case 0:
-					newMammal = new Elephant(); break;
-				case 1:
-					newMammal = new Monkey(); break;
-				case 2:
-					newMammal = new Lion(); break;
-				case 3:
-					newMammal = new Gorilla(); break;
-				case 4:
-					newMammal = new Gazelle(); break;
-				case 5:
-					newMammal = new Rhinoceros(); break;
-				default: 
-					newMammal = new Horse();	
-			}
+			if(mammalClasses == null) {
+				 mammalClasses = getClassList("mammals");
+			} 
+			
+			int index = ThreadLocalRandom.current().nextInt(mammalClasses.size());
+			String name = mammalClasses.get(index);
+			try {
+				newMammal = (Mammal)Class.forName(name).newInstance();
+			} catch (InstantiationException  | IllegalAccessException | ClassNotFoundException e) {
+				
+				e.printStackTrace();
+				// NOTE: Below would also work!
+				
+			} //catch (IllegalAccessException e) {
+//				
+//				e.printStackTrace();
+//			} catch (ClassNotFoundException e) {
+//				
+//				e.printStackTrace();
+//			}
+			// I forgot where and what replaces the code below..
+			
+//			switch (ThreadLocalRandom.current().nextInt(5)){ 
+//				case 0: 
+//					newMammal = new Elephant(); break;
+//				case 1:
+//					newMammal = new Monkey(); break;
+//				case 2:
+//					newMammal = new Lion(); break;
+//				case 3:
+//					newMammal = new Gorilla(); break;
+//				case 4:
+//					newMammal = new Gazelle(); break;
+//				case 5:
+//					newMammal = new Rhinoceros(); break;
+//				default: 
+//					newMammal = new Horse();	
+//			}
 			return newMammal;
 		};
+		
+		private List<String> fishClasses = null;
 		
 		private Fish buildFish() {
 			Fish newFish = null;
@@ -171,7 +196,8 @@ public class RandomAnimalBuilder {
 		private Reptile buildReptile() {
 			Reptile newReptile = null;
 			
-			switch (ThreadLocalRandom.current().nextInt(3)) { // NOTE: the number doesn't matter LESS you add more!!
+			switch (ThreadLocalRandom.current().nextInt(3)) { 
+			// NOTE: the number doesn't matter - LESS you add more!!
 				case 0:
 					newReptile = new Snake(); break;
 				default:
@@ -211,7 +237,8 @@ public class RandomAnimalBuilder {
 			
 		};
 		
-		private List<String> getClassList(String subDir){ // this will give us a file representation of the package name
+		private List<String> getClassList(String subDir){ 
+			// this will give us a file representation of the package name
 			Path dir = Paths.get(parentDir.toString(), subDir);
 			List<String> classes = new CopyOnWriteArrayList<>();
 			String pkg = parentPkg + "." + subDir; // has to be a DOT - NOT anything else!!

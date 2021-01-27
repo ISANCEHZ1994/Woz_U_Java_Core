@@ -10,6 +10,9 @@ public class Lesson06 {
 		MultipleHandlers mHandle = new MultipleHandlers();
 		mHandle.inClassWork();
 		
+		ExtendExceptions ee = new ExtendExceptions();
+		ee.inClassWork();
+		
 		
 	}
 

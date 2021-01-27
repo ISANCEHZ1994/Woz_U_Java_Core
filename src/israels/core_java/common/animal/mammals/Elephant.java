@@ -49,6 +49,7 @@ public class Elephant extends Mammal{
 	@Override
 	public void sleep() {
 		System.out.println(getType() + " sleeping under a starlit sky");
+		setHealth((byte)5);
 	};
 	
 	

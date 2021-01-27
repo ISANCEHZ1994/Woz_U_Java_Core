@@ -9,7 +9,7 @@ public class AnimalTester {
 	public static void main(String[] args) {
 		
 //		at.testRandomAnimalBuilder();
-		at.testAnimalTypes(AnimalType.FISH, 10);
+		at.testAnimalTypes(AnimalType.MAMMAL, 10);
 	}
 	private void testRandomAnimalBuilder() {
 		System.out.println("1. Test RandomAnimalBuilder:");
