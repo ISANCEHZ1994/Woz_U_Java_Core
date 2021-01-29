@@ -8,7 +8,7 @@ import israels.core_java.common.animal.Sex;
 
 //import israels.core_java.common.animal.mammals;
 
-public class Elephant extends Mammal{
+public class Elephant extends Herders{
 // --------------------------> VARIABLES SECTION <----------------------------------------------------------
 	
 

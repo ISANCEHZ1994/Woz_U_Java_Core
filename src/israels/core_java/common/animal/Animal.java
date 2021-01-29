@@ -20,9 +20,9 @@ public class Animal {
 		}else if( age > 12) {
 			t = " this animal is a baby! "; 
 		}else if(age <= 12) {
-			t = " this is a juvenile animal that is at Maturity!";
+			t = " this is a juvenile animal that is at maturity";
 		}else if( age >= 50) {
-			t = " t";
+			t = " this animal is an old-timer";
 		}
 		return t;
 		};
@@ -54,6 +54,7 @@ public class Animal {
 	protected int ADULT_FEMALE_MAX_WEIGHT = 150;
 	protected int ADULT_MALE_MIN_WEIGHT = 120;
 	protected int ADULT_MALE_MAX_WEIGHT = 180;
+	protected int TEETH = 32;
 	
 	
 	public int getMaxAge() {return MAX_AGE;};
@@ -239,5 +240,7 @@ public class Animal {
 			health = (byte)newHealth; // remember that we have it set as byte all the way up
 		}
 	};
+	
+	
 	
 };

@@ -55,6 +55,8 @@ public class Interfaces {
 	private void testCarnivoreInterface() {
 		System.out.println("2. Test the Carnivore Interface <=============================");
 		
+		// NOTE: we are getting .setName() from the Lion.java Class 
+		// AND .hunt() from => Lion.java => Carnivora.java => Carnivore.java
 		Lion scar = new Lion();
 		scar.setName("Scar");
 		scar.hunt();

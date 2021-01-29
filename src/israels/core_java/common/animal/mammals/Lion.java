@@ -8,9 +8,11 @@ import israels.core_java.common.animal.Sex;
 public class Lion extends Carnivora{
 	
 // --------------------------> VARIABLES SECTION <----------------------------------------------------------
+	
 	private String name; // <= Follow encapsulation convention (that's why its private)!!
 	public String getName() {  return name; };
 	public void setName(String s) { name = s; };
+	// NOTE: we need these variables for the Interface.java in Lesson02
 
 // --------------------------> CONSTRUCTOR SECTION <----------------------------------------------------------
 	
@@ -44,19 +46,32 @@ public class Lion extends Carnivora{
 	
 // --------------------------> METHOD SECTION <----------------------------------------------------------
 	
-//	@Override
-//	public void eat() {
-//		System.out.println(getType() + " devouring zebras");
-//	};
+	@Override
+	public void eat() {
+		System.out.println(getType() + " devouring zebras");
+	};
 	
 	
 	@Override
 	public void move() {
-		System.out.println(getType() + " moving with murderous intent");
+		if(getAge() > MAX_AGE) {
+			return;
+		}else if(getAge() > MAX_AGE - 2) {
+			System.out.println(getType() + "old lion moves very slowly");
+			changeHealth(-4);
+		}else if(getAge() > MATURITY) {
+			System.out.println(getType() + " is majestically prowling the pridelands");
+			changeHealth(-2);
+		}else if(getAge() == 0) {
+			 System.out.println(" lion cub plahing with siblings");
+		}else {
+			System.out.println("Young lion learning to sneak up on prey");
+		}
 	};
+	
 	@Override
 	public void sleep() {
-		System.out.println(getType() + " sleeping after a glorious feast");
+		System.out.println(getType() + " sleeping with the pride");
 	};
 	
 	

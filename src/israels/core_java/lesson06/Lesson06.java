@@ -13,6 +13,10 @@ public class Lesson06 {
 		ExtendExceptions ee = new ExtendExceptions();
 		ee.inClassWork();
 		
+		//TryResources NEW to Java 7
+		TryWithResources twr = new TryWithResources();
+		twr.inClassWork();
+		
 		
 	}
 

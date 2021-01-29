@@ -1,6 +1,9 @@
 package israels.core_java.common.animal;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -17,6 +20,8 @@ import israels.core_java.common.animal.mammals.*;
 import israels.core_java.common.animal.reptiles.*;
 
 public class RandomAnimalBuilder {
+	
+
 // --------------------------> VARIABLES SECTION <----------------------------------------------------------
 	private AnimalType type = null;
 	private Class species = null;
@@ -107,6 +112,7 @@ public class RandomAnimalBuilder {
 			}
 			return a;
 		};
+		
 		
 		private Animal buildClass() {
 			Animal newAnimal = null;
@@ -282,7 +288,8 @@ public class RandomAnimalBuilder {
 			debug = false; // turn off
 		}; // closes testGetClassList
 		
-
+		
+		
 
 };// closes class                             
 	
