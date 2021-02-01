@@ -18,6 +18,12 @@
 package israels.core_java.common.animal.ecosystem;
 
 public class Yellowstone extends Ecosystem {
+
+	@Override
+	public void listPopulation() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	

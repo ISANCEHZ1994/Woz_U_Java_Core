@@ -44,7 +44,7 @@ public class MultipleHandlers {
 	//  method to the printAverage method where it is handled by a catch block
 	public int computeAverage(int sum, int number) {
 		if(number == 0) {
-			// programmatically throwing an exception
+			// programmatically throwing an exception <== This is throwing a new exception!
 			throw new IllegalArgumentException("computeAverage number parameter can't be 0");
 		}
 		System.out.println("Computing average..");             

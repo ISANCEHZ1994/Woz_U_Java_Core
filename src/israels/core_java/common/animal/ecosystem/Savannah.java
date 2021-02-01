@@ -11,6 +11,11 @@ public class Savannah extends Ecosystem {
 	List<Cheetah> cheetah = (List<Cheetah>) new RandomAnimalBuilder(Lion.class).build(6);
 	
 	
+	@Override
+	public void listPopulation() {
+		// TODO Auto-generated method stub
+		
+	}
 	// create a simulation of a pride of lion hunting 
 	
 	// create a simulation of a cheetah hunting

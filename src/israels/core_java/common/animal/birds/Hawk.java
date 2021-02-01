@@ -13,6 +13,12 @@ public class Hawk extends Raptor {
 		prey.add("trutle");
 		
 	}
+	
+//	public Hawk[] reprodouce(int i) {
+//		if(getAge() >= MATURITY && getSex() == sex.Female) {
+//			
+//		}
+//	}
 
 	@Override
 	public boolean catchPrey(Animal target) {
@@ -22,6 +28,18 @@ public class Hawk extends Raptor {
 	
 	public void move() {
 		
-	};
+	}
+
+	@Override
+	public boolean canRun() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+//	@Override
+//	public boolean canSwim() {
+//		// TODO Auto-generated method stub
+//		return false;
+//	};
 
 }

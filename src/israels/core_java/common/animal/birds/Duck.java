@@ -9,4 +9,16 @@ public class Duck extends Bird {
 		
 	}
 
+	@Override
+	public boolean canRun() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean canSwim() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
 }

@@ -142,7 +142,8 @@ public class Animal {
 			result = this.type.equalsIgnoreCase(aRef.type) &&
 					this.age == aRef.age &&
 					this.weight == aRef.weight &&
-					this.sex == aRef.sex;
+					this.sex == aRef.sex; //&&
+					//this.ecosystemType == aRef.ecosystemType;
 		}
 		return result;
 	};
@@ -241,6 +242,21 @@ public class Animal {
 		}
 	};
 	
-	
+//	@Override
+//	public int compareTo(Animal otherAnimal) {
+//		int result = 0;
+//		
+//		result = type.compareToIgnoreCase(otherAnimal.type);
+//		if(result == 0) {
+//			result += new Integer(age).compareTo(new Integer(otherAnimal.age));
+//			if(result == 0) {
+//				result += new Integer(weight).compareTo(new Integer(otherAnimal.weight));
+//			}if(result == 0) {
+//					result += sex.compareTo(otherAnimal.sex);
+//			}
+//		}
+//		
+//		return result;
+//	};
 	
 };

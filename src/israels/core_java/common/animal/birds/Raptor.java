@@ -29,5 +29,7 @@ public abstract class Raptor extends Bird implements Carnivore{
 		}
 		return null;
 	}
+	
+	public boolean canSwim() { return false; };
 
 }
