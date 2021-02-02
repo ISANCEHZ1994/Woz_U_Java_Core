@@ -2,7 +2,10 @@ package israels.core_java.common.animal;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import israels.core_java.common.animal.ecosystem.EcosystemType;
+
 public class Animal {
+	
 // --------------------------> VARIABLES SECTION <----------------------------------------------------------
 	// Variables with GETTERS && SETTERS
 	// static variables first
@@ -89,6 +92,11 @@ public class Animal {
 	public boolean isTargeted() { return targeted;};
 	public void setTargeted(boolean b) { targeted = b;}  ;
 	
+	
+	private EcosystemType ecosystemType = EcosystemType.UNKNOWN;
+	public void setEcosystem(EcosystemType est) { ecosystemType = est;}
+	public EcosystemType getEcosystem() { return ecosystemType;}
+	
 // --------------------------> CONSTRUCTOR SECTION <----------------------------------------------------------
 	static {
 //		 System.out.println("In the Animal STATIC initialization Block"); // static - it only runs the FIRST TIME it is loaded
@@ -142,12 +150,23 @@ public class Animal {
 			result = this.type.equalsIgnoreCase(aRef.type) &&
 					this.age == aRef.age &&
 					this.weight == aRef.weight &&
-					this.sex == aRef.sex; //&&
-					//this.ecosystemType == aRef.ecosystemType;
+					this.sex == aRef.sex &&
+					this.ecosystemType == aRef.ecosystemType;
 		}
 		return result;
 	};
 	
+	
+	@Override
+	public int hashCode() {
+		int code = type.toLowerCase().hashCode();
+		// ^= is the bitwise XOR assignment operator
+		 code ^= (age * 17);
+		 code ^= (weight * 31);
+		 code += sex.toString().hashCode();
+		 code += ecosystemType.toString().hashCode();
+		return code;
+	}
 	
 	// Class Animal Methods
 	public void eat() {

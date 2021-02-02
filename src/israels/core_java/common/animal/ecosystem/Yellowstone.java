@@ -21,7 +21,7 @@ public class Yellowstone extends Ecosystem {
 
 	@Override
 	public void listPopulation() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	

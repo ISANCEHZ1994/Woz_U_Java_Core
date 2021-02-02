@@ -3,6 +3,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import israels.core_java.common.animal.Pet;
 import israels.core_java.common.animal.Sex;
+import israels.core_java.common.animal.birds.Raptor;
 import israels.core_java.common.animal.mammals.Carnivora;
 
 
@@ -40,7 +41,33 @@ public class Dog extends Carnivora implements Pet{ // To use interface we MUST I
 		
 	};
 	
+	public Dog(String d) {
+		this();
+		name = d;
+	}
+	
 // ********************************** METHOD SECTION ***************************************************
+	
+	@Override
+	public boolean equals(Object other) {
+		if(this == other) { return true;}
+		boolean result = false;
+		if(other instanceof Carnivora) {
+			result = super.equals(other)
+					&& name.equals(((Dog)other).name)
+					&& breed.equals(((Dog)other).breed);
+		}
+		return result;
+	}
+	
+	@Override
+	public int hashCode() {
+		int code = super.hashCode();
+		// ^= is the bitwise XOR assignment operator
+		 code += name.hashCode();
+		 code ^= breed.hashCode();
+		return code;
+	}
 
 	@Override
 	public boolean hasLicense() {

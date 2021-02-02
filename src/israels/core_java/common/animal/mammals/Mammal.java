@@ -4,7 +4,7 @@ import israels.core_java.common.animal.Animal;
 
 public abstract class Mammal extends Animal {
 	
-	private int maxRunningSpeed = 1;
+	protected int maxRunningSpeed = 1;
 	
 	public void setMaxRunningSpeed(int speed) {
 		if(speed > 1) {
@@ -14,10 +14,31 @@ public abstract class Mammal extends Animal {
 	};
 	
 	public Mammal() {
-		setType("uknown animal");
+		setType("uknown mammal");
 	};
 	
 // --------------------------> METHOD SECTION <----------------------------------------------------------	
+	
+	@Override
+	public boolean equals(Object other) {
+		if(this == other) { return true;}
+		boolean result = false;
+		if(other instanceof Mammal) {
+			result = super.equals(other)
+					&& maxRunningSpeed == ((Mammal)other).maxRunningSpeed;
+		}
+		return result;
+	}
+	
+	@Override
+	public int hashCode() {
+		int code = super.hashCode();
+		code ^= maxRunningSpeed * 37;
+		
+		return code;
+	}
+	
+	
 	public int getRunningSpeed() {
 		int speed;
 		if(getHealth() > 4) {

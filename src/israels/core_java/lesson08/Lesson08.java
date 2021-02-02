@@ -12,7 +12,8 @@ public class Lesson08 {
 		ObjectMethods overrideObjectMethods = new ObjectMethods();
 		overrideObjectMethods.inClassWork();
 		
-		
+//		UnderstandingGenerics ug = new UnderstandingGenerics();
+//		ug.inClassWork();
 	}
 
 }

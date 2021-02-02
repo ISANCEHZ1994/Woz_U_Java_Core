@@ -8,6 +8,15 @@ public abstract class Carnivora extends Mammal implements Carnivore {
 	
 	
 // --------------------------> VARIABLES SECTION <----------------------------------------------------------
+	private int maxRunningSpeed = 1;
+	
+	public void setMaxRunningSpeed(int speed) {
+		if(speed > 1) {
+			maxRunningSpeed = speed;
+		}
+	
+	};
+	
 	protected List <String> prey = new ArrayList<>();
 	
 	protected String preyFound = null; // note: not nessesary to say null - itll do it by default but good practice!
@@ -33,6 +42,23 @@ public abstract class Carnivora extends Mammal implements Carnivore {
 		}
 	};
 	
+	@Override
+	public boolean equals(Object other) {
+		if(this == other) { return true;}
+		boolean result = false;
+		if(other instanceof Mammal) {
+			result = super.equals(other)
+					&& maxRunningSpeed == ((Mammal)other).maxRunningSpeed;
+		}
+		return result;
+	}
+	
+	@Override
+	public int hashCode() {
+		int code = super.hashCode();
+		
+		return code;
+	}
 	
 	// Support Carnivore Interface
 	@Override

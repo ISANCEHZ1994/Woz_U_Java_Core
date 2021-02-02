@@ -1,6 +1,7 @@
 package israels.core_java.common.animal.birds;
 import java.util.*; 
 import israels.core_java.common.animal.*;
+import israels.core_java.common.animal.mammals.Mammal;
 
 public abstract class Raptor extends Bird implements Carnivore{
 	
@@ -13,6 +14,18 @@ public abstract class Raptor extends Bird implements Carnivore{
 	public Raptor() {
 		setType("UNKNOWN RAPTOR");
 		food = BirdFood.MEAT;
+	}
+	
+	
+	@Override
+	public boolean equals(Object other) {
+		if(this == other) { return true;}
+		boolean result = false;
+		if(other instanceof Raptor) {
+			result = super.equals(other)
+					&& prey.equals(((Raptor)other).prey);
+		}
+		return result;
 	}
 	
 	@Override

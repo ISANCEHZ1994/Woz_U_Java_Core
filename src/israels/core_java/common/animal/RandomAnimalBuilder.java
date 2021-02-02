@@ -15,6 +15,7 @@ import israels.core_java.common.animal.birds.*;
 import israels.core_java.common.animal.domestic.Cat;
 import israels.core_java.common.animal.domestic.Dog;
 import israels.core_java.common.animal.domestic.Horse;
+import israels.core_java.common.animal.ecosystem.EcosystemType;
 import israels.core_java.common.animal.fish.*;
 import israels.core_java.common.animal.mammals.*;
 import israels.core_java.common.animal.reptiles.*;
@@ -31,6 +32,7 @@ public class RandomAnimalBuilder {
 	private String parentPkg = "israels.core_java.common.animal";
 	private boolean debug = false;
 	
+	private EcosystemType ecoSystem = null;
 // --------------------------> CONSTRUCTOR SECTION <----------------------------------------------------------
 	
 	public RandomAnimalBuilder() {
@@ -49,6 +51,20 @@ public class RandomAnimalBuilder {
 	
 // --------------------------> METHOD SECTION <----------------------------------------------------------
 	
+	// Builder Design pattern used to set non mandatory parameters
+	// Methods that set various parameters instead of creating multiple constructors
+	public RandomAnimalBuilder setEcosystem(EcosystemType ecoType) {
+		ecoSystem = ecoType;
+		return this;
+	}
+	
+	public RandomAnimalBuilder setDebug(boolean db) {
+		debug = db;
+		return this;
+	}
+	// Ends Builder Design pattern
+	
+	// The build method is also part of the Builder Design Pattern
 	public List<? extends Animal> build(int count){
 		List <Animal> result = new ArrayList<>(); // <> Diamond syntax
 		
@@ -62,7 +78,9 @@ public class RandomAnimalBuilder {
 			}else {
 				a = buildRandom();
 			}
-			
+			if(a == null) {
+				continue;
+			}
 			// Set the new animal to a random age based on it's age range
 			int age = ThreadLocalRandom.current().nextInt(0, a.getMaxAge());
 			a.setAge(age);
@@ -144,7 +162,10 @@ public class RandomAnimalBuilder {
 			Mammal newMammal = null;
 			
 			if(mammalClasses == null) {
-				 mammalClasses = getClassList("mammals");
+				 mammalClasses = getClassList("mammals"); // NOTE: put this in all other classes!!
+				 if(mammalClasses.isEmpty()) {
+					 return null;
+				 }
 			} 
 			
 			int index = ThreadLocalRandom.current().nextInt(mammalClasses.size());
@@ -266,6 +287,13 @@ public class RandomAnimalBuilder {
 				Animal a = null;
 				try {
 					a = (Animal)Class.forName(clsName).newInstance();
+					if (ecoSystem != null && (ecoSystem != EcosystemType.UNKNOWN || ecoSystem != EcosystemType.VARIOUS)) {
+						if (a.getEcosystem() != ecoSystem) {
+							if (debug) System.out.println("Removing ecosystem " + a.getEcosystem() + " from class list");
+							classes.remove(clsName);
+						}
+					}
+					
 				}catch(ClassNotFoundException | IllegalAccessException e) {
 					e.printStackTrace();
 					System.exit(1);
