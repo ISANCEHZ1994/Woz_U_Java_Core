@@ -21,7 +21,7 @@ public class Moose extends Mammal{
 		setType("moose"); // THIS IS WHY WE USE PROTECTED in Animal Class!!
 		setEcosystem(EcosystemType.YELLOWSTONE);
 		setMaxRunningSpeed(35);
-//		prey.add("");
+
 	};
 	
 	public Moose(int age, int weight, Sex sex) {

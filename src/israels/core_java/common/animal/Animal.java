@@ -22,7 +22,7 @@ public class Animal implements Serializable {
 		if (this.getAge() == 0 ) {
 			t = "baby " + type;
 		} else if (this.getAge() < MATURITY) {
-			t = "juvenile " + type;
+			t = "young " + type;
 		} else if (this.getAge() > MAX_AGE) {
 			t = "dead " + type;
 		}

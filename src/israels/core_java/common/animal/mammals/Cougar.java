@@ -22,8 +22,14 @@ public class Cougar extends Carnivora {
 			// remember private makes it invisible to other classes so we can't get the variable: type inside of Animal
 			setType("cougar"); // THIS IS WHY WE USE PROTECTED in Animal Class!!
 			setEcosystem(EcosystemType.YELLOWSTONE);
-			setMaxRunningSpeed(35);
-			prey.add("");
+			setMaxRunningSpeed(50);
+			prey.add("deer");
+			prey.add("elk");
+			prey.add("moose");
+			prey.add("moutain goat");
+			prey.add("coyotes");
+			prey.add("hare");
+			
 			
 		};
 		

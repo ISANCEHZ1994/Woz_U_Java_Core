@@ -1,6 +1,6 @@
 package israels.core_java.lesson01;
 
-public class WorkingWithStrings { //  
+public class WorkingWithStrings {   
 	public void inClassWork() {
 		
 		// methods and variables are ALWAYS lower case!

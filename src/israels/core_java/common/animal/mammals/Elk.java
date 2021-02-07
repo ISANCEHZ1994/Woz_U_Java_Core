@@ -21,8 +21,8 @@ public class Elk extends Mammal{
 		// remember private makes it invisible to other classes so we can't get the variable: type inside of Animal
 		setType("elk"); // THIS IS WHY WE USE PROTECTED in Animal Class!!
 		setEcosystem(EcosystemType.YELLOWSTONE);
-		setMaxRunningSpeed(35);
-//		prey.add("");
+		setMaxRunningSpeed(45);
+
 	};
 	
 	public Elk(int age, int weight, Sex sex) {
@@ -30,6 +30,7 @@ public class Elk extends Mammal{
 		setAge(age);
 		setWeight(weight);
 		setSex(sex);
+		
 	}
 	
 	@Override

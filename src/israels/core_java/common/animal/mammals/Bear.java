@@ -25,7 +25,13 @@ public class Bear extends Carnivora {
 		setType("bear"); // THIS IS WHY WE USE PROTECTED in Animal Class!!
 		setEcosystem(EcosystemType.YELLOWSTONE);
 		setMaxRunningSpeed(35);
-		prey.add("");
+		prey.add("salmon");
+		prey.add("elk");
+		prey.add("deer");
+		prey.add("moose");
+		prey.add("squirrels");
+		prey.add("carrion");
+		
 	};
 	
 	public Bear(int age, int weight, Sex sex) {

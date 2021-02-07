@@ -42,17 +42,12 @@
  */
 
 package israels.core_java.common.animal.ecosystem;
-
 import java.util.List;
-
 import israels.core_java.common.animal.RandomAnimalBuilder;
-//import israels.core_java.common.animal.mammals.Cheetah;
-//import israels.core_java.common.animal.mammals.Lion;
+import israels.core_java.common.animal.mammals.*;
 
 public class Yellowstone extends Ecosystem {
 	
-//	List<Wolf> wolfPack = ArrayList<>();
-//	List<Cheetah> cheetah = (List<Cheetah>) new RandomAnimalBuilder(Lion.class).build(6);
 	
 	{
 		DESCRIPTION = "Yellowstone National Park is a nearly 3,500-sq.-mile wilderness recreation area atop a volcanic hot spot. "
@@ -68,12 +63,34 @@ public class Yellowstone extends Ecosystem {
 	}
 	
 	public Yellowstone() {
+		setEcosystem(EcosystemType.YELLOWSTONE);
 		ELEVATION = 6_000;
 	}
 
 	@Override
 	public void listPopulation() {
+		List<Wolf> wolfPack = (List<Wolf>) new RandomAnimalBuilder(Wolf.class).build(6);
+		List<Bear> bearSleuth = (List<Bear>) new RandomAnimalBuilder(Bear.class).build(3);
+		List<Cougar> cougar = (List<Cougar>) new RandomAnimalBuilder(Cougar.class).build(3);
+		List<Bison> bisonHerd = (List<Bison>) new RandomAnimalBuilder(Bison.class).build(20); // 1200
+		List<Elk> elkGang = (List<Elk>) new RandomAnimalBuilder(Elk.class).build(20); //200
+		List<Moose> mooseHerd = (List<Moose>) new RandomAnimalBuilder(Moose.class).build(3);
 		
+		System.out.println(wolfPack);
+		
+		System.out.println();
+		System.out.println(bearSleuth);
+		System.out.println();
+		System.out.println(cougar);
+		System.out.println();
+		System.out.println(bisonHerd);
+		System.out.println();
+		System.out.println(elkGang);
+		System.out.println();
+		System.out.println(mooseHerd);
+		System.out.println();
+		
+		System.out.println("=================================================================================================");
 	};
 
 	@Override
@@ -84,6 +101,15 @@ public class Yellowstone extends Ecosystem {
 	public String escapeChance() {
 		return null;
 	};
+	
+	public void test() {
+		
+		Wolf singleWolf = new Wolf();
+		singleWolf.setAge(5);
+		singleWolf.setWeight(120);
+		singleWolf.hunt();
+		System.out.println(singleWolf);
+	}
 	
 	
 };

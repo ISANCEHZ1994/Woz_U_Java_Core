@@ -22,7 +22,7 @@ public class Bison extends Mammal {
 		setType("bison"); // THIS IS WHY WE USE PROTECTED in Animal Class!!
 		setEcosystem(EcosystemType.YELLOWSTONE);
 		setMaxRunningSpeed(35);
-//		prey.add("");
+
 	};
 	
 	public Bison(int age, int weight, Sex sex) {

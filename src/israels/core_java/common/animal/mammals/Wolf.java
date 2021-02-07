@@ -17,14 +17,20 @@ public class Wolf extends Carnivora {
 		ADULT_MALE_MIN_WEIGHT = 70;
 		ADULT_MALE_MAX_WEIGHT = 110;
 		TEETH = 42;
+		
 	}
 	
 	public Wolf() {
 		// remember private makes it invisible to other classes so we can't get the variable: type inside of Animal
 		setType("wolf"); // THIS IS WHY WE USE PROTECTED in Animal Class!!
 		setEcosystem(EcosystemType.YELLOWSTONE);
-		setMaxRunningSpeed(35);
-		prey.add("");
+		setMaxRunningSpeed(37);
+		prey.add("deer");
+		prey.add("elk");
+		prey.add("bison");
+		prey.add("moose");
+		prey.add("beaver");
+		prey.add("hare");
 		
 	};
 	
