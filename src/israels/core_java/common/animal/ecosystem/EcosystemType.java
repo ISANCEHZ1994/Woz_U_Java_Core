@@ -21,6 +21,7 @@ public enum EcosystemType {
 	CORAL_REEF,			// generic coral reef ecosystem (specify ocean, continent or specific reef system)
 	FRESH_WATER, 		// generic fresh water ecosystem
 	DOMESTIC,			// Domesticated animals (should implement Domesticatable)
+	YELLOWSTONE,	// <=== STUDENT PROJECT
 	VARIOUS;			// For non specific animals that may live in more than one ecosystem
 
 	

@@ -43,7 +43,9 @@ public abstract class Bird extends Animal {
 		System.out.println(getType() + " is found sleeping in a nest!");
 	}
 	
-	public boolean canFly() { return true; }
+	
+	// Bird Methods
+	public boolean canFly() { return true; } // Override if necessary
 	public abstract boolean canRun();
 	public abstract boolean canSwim();
 	

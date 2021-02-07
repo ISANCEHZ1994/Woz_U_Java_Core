@@ -1,10 +1,11 @@
 package israels.core_java.common.animal;
 
+import java.io.Serializable;
 import java.util.concurrent.ThreadLocalRandom;
 
 import israels.core_java.common.animal.ecosystem.EcosystemType;
 
-public class Animal {
+public class Animal implements Serializable {
 	
 // --------------------------> VARIABLES SECTION <----------------------------------------------------------
 	// Variables with GETTERS && SETTERS
@@ -16,19 +17,18 @@ public class Animal {
 	
 	// This is an INSTANCE REFERENCE VARIABLE
 	private String type;
-	public String getType() { 
-		String t = "";
-		if(age == 0) {
+	public String getType() {
+		String t = type;
+		if (this.getAge() == 0 ) {
 			t = "baby " + type;
-		}else if( age > 12) {
-			t = " this animal is a baby! "; 
-		}else if(age <= 12) {
-			t = " this is a juvenile animal that is at maturity";
-		}else if( age >= 50) {
-			t = " this animal is an old-timer";
+		} else if (this.getAge() < MATURITY) {
+			t = "juvenile " + type;
+		} else if (this.getAge() > MAX_AGE) {
+			t = "dead " + type;
 		}
 		return t;
-		};
+	};
+
 	final protected void setType( String t) { type = t; };
 	// we use protected - means that not only those from package 
 	// but ones that are extended to it - SUCH AS ELEPHANT Class! - ENCAPSOLATION
@@ -51,6 +51,8 @@ public class Animal {
 	};
 	
 	protected int MATURITY = 12;
+	protected int FEMALE_MATURITY = 2;
+	protected int MALE_MATURITY = 3;
 	protected int MAX_AGE = 50;
 	protected int BIRTH_WEIGHT = 10;
 	protected int ADULT_FEMALE_MIN_WEIGHT = 100;
@@ -88,9 +90,9 @@ public class Animal {
 		};
 	};
 	
-	private boolean targeted = false;
+	private transient boolean targeted = false; //(transient) this variable will NOT be saved into the Animal Files folder - DAOPattern
 	public boolean isTargeted() { return targeted;};
-	public void setTargeted(boolean b) { targeted = b;}  ;
+	public void setTargeted(boolean b) { targeted = b;};
 	
 	
 	private EcosystemType ecosystemType = EcosystemType.UNKNOWN;
@@ -188,7 +190,7 @@ public class Animal {
 		BIRTH_WEIGHT);
 	};
 	
-	protected int setRandomWeightByAge(int a) { // void DOES NOT return anything so use int (INTEGER)
+	protected int setRandomWeightByAge(int a) {
 		int result;
 		if(a < 5) {
 			result = a * 2;

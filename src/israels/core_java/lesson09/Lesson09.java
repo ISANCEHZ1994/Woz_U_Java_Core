@@ -7,14 +7,13 @@ public class Lesson09 {
 		SingletonPattern sp = new SingletonPattern();
 		sp.inClassWork();
 		
-		BuilderPattern tbp = new BuilderPattern();
-		tbp.inClassWork();
+//		BuilderPattern tbp = new BuilderPattern();
+//		tbp.inClassWork();
 
-		
+		DAOPattern dp = new DAOPattern();
+		dp.inClassWork();
 		
 		
 	}
 
-	
-	
 }

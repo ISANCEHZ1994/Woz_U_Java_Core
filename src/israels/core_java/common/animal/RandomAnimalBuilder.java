@@ -20,100 +20,100 @@ import israels.core_java.common.animal.fish.*;
 import israels.core_java.common.animal.mammals.*;
 import israels.core_java.common.animal.reptiles.*;
 
-public class RandomAnimalBuilder {
+public final class RandomAnimalBuilder {
+//**************************** VARIABLES SECTION ******************************
+		private AnimalType type = null;
 	
-
-// --------------------------> VARIABLES SECTION <----------------------------------------------------------
-	private AnimalType type = null;
-	private Class species = null;
+		private Class species = null;
 	
-	// Variables for file handling
-	private Path parentDir = Paths.get("src", "israels","core_java", "common","animal");
-	private String parentPkg = "israels.core_java.common.animal";
-	private boolean debug = false;
+		// Variables for file handling
+		private Path parentDir = Paths.get("src", "israels","core_java", "common","animal");
+		private String parentPkg = "israels.core_java.common.animal";
+		private boolean debug = false;
 	
-	private EcosystemType ecoSystem = null;
-// --------------------------> CONSTRUCTOR SECTION <----------------------------------------------------------
+		private EcosystemType ecoSystem = null;
 	
-	public RandomAnimalBuilder() {
-		// TODO Auto-generated constructor stub
-		
-	};
-	
-	public RandomAnimalBuilder(Class cls) {
-		species = cls;
-	}
-	
-	// We are using this Constructor to build Random Animals of a specifc type
-	public RandomAnimalBuilder(AnimalType t) {
-		type = t;
-	}
-	
-// --------------------------> METHOD SECTION <----------------------------------------------------------
-	
-	// Builder Design pattern used to set non mandatory parameters
-	// Methods that set various parameters instead of creating multiple constructors
-	public RandomAnimalBuilder setEcosystem(EcosystemType ecoType) {
-		ecoSystem = ecoType;
-		return this;
-	}
-	
-	public RandomAnimalBuilder setDebug(boolean db) {
-		debug = db;
-		return this;
-	}
-	// Ends Builder Design pattern
-	
-	// The build method is also part of the Builder Design Pattern
-	public List<? extends Animal> build(int count){
-		List <Animal> result = new ArrayList<>(); // <> Diamond syntax
-		
-			for(int i = 1; i <= count; i++) {
-			Animal a;
-			
-			if(type != null) {
-				a = buildType(type);
-			}else if(species != null){
-				a = buildClass();	
-			}else {
-				a = buildRandom();
-			}
-			if(a == null) {
-				continue;
-			}
-			// Set the new animal to a random age based on it's age range
-			int age = ThreadLocalRandom.current().nextInt(0, a.getMaxAge());
-			a.setAge(age);
-			// Set the new animal's sex, default is FEMALE, must set half to MALE
-			if(ThreadLocalRandom.current().nextBoolean()) a.setSex(Sex.MALE);
-			// Set weight based on Animals age and sex => BOOM now we can have both males and females 
-			a.setRandomWeightByAge();
-			
-			result.add(a);
+//*************************** CONSTRUCTOR SECTION *****************************
+		// Use this constructor to build random animal types
+		public RandomAnimalBuilder() {
 		}
-			return result;
-		}; 
+	
+		// Use this constructor to build random animals of a specific AnimalType
+		public RandomAnimalBuilder(AnimalType t) {
+			type = t;
+		}
+	
+		// Use this constructor to build random animals of a particular species
+		public RandomAnimalBuilder(Class cls) {
+			species = cls;
+		}
+	
+//****************************** METHOD SECTION *******************************
+		// Builder design pattern used to set non mandatory parameters
+		// Methods that set various parameters instead of creating multiple constructors
+		public RandomAnimalBuilder setEcosystem(EcosystemType ecoType) {
+			ecoSystem = ecoType;
+			return this;
+		}
+	
+		public RandomAnimalBuilder setDebug(boolean db) {
+			debug = db;
+			return this;
+		}
+	
+		// Ends Builder Design pattern setters
 		
-		private Animal buildRandom() {
+		// The build method is also part of the Builder Design Pattern
+		public List<? extends Animal> build(int count){
+			List <Animal> result = new ArrayList<>(); // <> Diamond syntax
+			
+				for(int i = 1; i <= count; i++) {
+				Animal a;
+				
+				if(type != null) {
+					a = buildType(type);
+				}else if(species != null){
+					a = buildClass();	
+				}else {
+					a = buildRandom();
+				}
+				if(a == null) {
+					continue;
+				}
+				// Set animal to a random age within animal's age range
+				a.setAge(ThreadLocalRandom.current().nextInt(0, a.getMaxAge()));
+				// Set the new animal's sex, default is FEMALE, so set half to MALE
+				if (ThreadLocalRandom.current().nextBoolean()) a.setSex(Sex.MALE);
+				// After age and sex is set, set weight within reasonable range
+				a.setRandomWeightByAge();
+				// Finally set a random health level for the initial start
+				a.setHealth((byte)ThreadLocalRandom.current().nextInt(-3,8));
+				result.add(a);
+			}
+	
+				return result;
+		}
+	
+	private Animal buildRandom() {
 			Animal a = null;
-			switch (ThreadLocalRandom.current().nextInt(6)){
+			switch (ThreadLocalRandom.current().nextInt(6)) {
 			case 0:
-				a = buildBird(); break; // Note: we havent written buildBird() yet! - NOTE Check below NOW we have!!
+				a = buildBird(); break;
 			case 1:
-				a = buildReptile(); break;
-			case 2: 
 				a = buildFish(); break;
+			case 2:
+				a = buildReptile(); break;
 			case 3:
 				a = buildDomestic(); break;
-			default: 
+			default:
 				a = buildMammal();
 			}
 			return a;
-		};
-		
-		private Animal buildType(AnimalType t) {
+		}
+	
+	private Animal buildType(AnimalType t) {
 			Animal a = null;
-			switch (t){
+			switch (t) {
 			default:
 			case ZOO:
 				a = buildZoo(); break;
@@ -129,161 +129,158 @@ public class RandomAnimalBuilder {
 				a = buildDomestic(); break;
 			}
 			return a;
-		};
-		
-		
-		private Animal buildClass() {
+		}
+	
+	private Animal buildClass() {
 			Animal newAnimal = null;
 			String className = species.getCanonicalName();
+//			System.out.println(clsName);
 			try {
 				newAnimal = (Animal)Class.forName(className).newInstance();
-			} catch (Exception e) {
-			  e.printStackTrace();
-			} 
-			return newAnimal;
-		};
-		
-		private Animal buildZoo() {
-			Animal animal = new Animal();
-			switch (ThreadLocalRandom.current().nextInt(6)){
-			case 0:
-				animal = buildBird(); break;
-			case 1:
-				animal = buildReptile(); break;
-			default:
-				animal = buildMammal(); break;
+			} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+				e.printStackTrace();
 			}
-			return animal;
+			return newAnimal;
 		}
-			
-		private List<String> mammalClasses = null;
-		
+	
+	private Animal buildZoo() {
+			Animal newAnimal;
+			switch (ThreadLocalRandom.current().nextInt(6)) {
+			case 0:
+				newAnimal = buildBird(); break;
+			case 1:
+				newAnimal = buildReptile(); break;
+			default:
+				newAnimal = buildMammal(); break;
+			}
+			return newAnimal;
+		}
+	
+	private List<String> mammalClasses = null;
 		private Mammal buildMammal() {
 			Mammal newMammal = null;
 			
-			if(mammalClasses == null) {
-				 mammalClasses = getClassList("mammals"); // NOTE: put this in all other classes!!
-				 if(mammalClasses.isEmpty()) {
-					 return null;
-				 }
-			} 
+			if (mammalClasses == null) {
+				mammalClasses = getClassList("mammals");
+				if ( mammalClasses.isEmpty()) return null;
+			}
 			
 			int index = ThreadLocalRandom.current().nextInt(mammalClasses.size());
 			String name = mammalClasses.get(index);
 			try {
 				newMammal = (Mammal)Class.forName(name).newInstance();
-			} catch (InstantiationException  | IllegalAccessException | ClassNotFoundException e) {
-				
+			} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 				e.printStackTrace();
-				// NOTE: Below would also work!
-				
-			} //catch (IllegalAccessException e) {
-//				
-//				e.printStackTrace();
-//			} catch (ClassNotFoundException e) {
-//				
-//				e.printStackTrace();
-//			}
-			// I forgot where and what replaces the code below..
-			
-//			switch (ThreadLocalRandom.current().nextInt(5)){ 
-//				case 0: 
-//					newMammal = new Elephant(); break;
-//				case 1:
-//					newMammal = new Monkey(); break;
-//				case 2:
-//					newMammal = new Lion(); break;
-//				case 3:
-//					newMammal = new Gorilla(); break;
-//				case 4:
-//					newMammal = new Gazelle(); break;
-//				case 5:
-//					newMammal = new Rhinoceros(); break;
-//				default: 
-//					newMammal = new Horse();	
-//			}
+			}
+	
 			return newMammal;
-		};
-		
-		private List<String> fishClasses = null;
-		
-		private Fish buildFish() {
-			Fish newFish = null;
-			
-			switch (ThreadLocalRandom.current().nextInt(3)) {
-				case 0:
-					newFish = new Swordfish(); break;
-				default:
-					newFish = new Tuna(); 
-				}
-			return newFish;
-			
-		};
-		
-		private Reptile buildReptile() {
-			Reptile newReptile = null;
-			
-			switch (ThreadLocalRandom.current().nextInt(3)) { 
-			// NOTE: the number doesn't matter - LESS you add more!!
-				case 0:
-					newReptile = new Snake(); break;
-				default:
-					newReptile = new Crocodile(); 
-				}
-			return newReptile;
-			
-		};
-		
+		}
+	
+		private List<String> birdClasses = null;
 		private Bird buildBird() {
 			Bird newBird = null;
-			
-			switch (ThreadLocalRandom.current().nextInt(2)) {
-				case 0:
-					newBird = new Duck(); break;
-				default:
-					newBird = new Hawk(); 
-				}
-			return newBird;
-			
-		};
+			if (birdClasses == null) {
+				birdClasses = getClassList("birds");
+				if ( birdClasses.isEmpty()) return null;
+			}
+	
+			String name = birdClasses.get(ThreadLocalRandom.current().nextInt(birdClasses.size()));
+			try {
+				newBird = (Bird)Class.forName(name).newInstance();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		
+			return newBird;
+		}
+	
+		private List<String> fishClasses = null;
+		private Fish buildFish() {
+			Fish newFish = null;
+			if (fishClasses == null) {
+				fishClasses = getClassList("fish");
+				if ( fishClasses.isEmpty()) return null;
+			}
+	
+			int index = ThreadLocalRandom.current().nextInt(fishClasses.size());
+			String name = fishClasses.get(index);
+			try {
+				newFish = (Fish)Class.forName(name).newInstance();
+			} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		
+			return newFish;
+		}
+	
+		private List<String> reptileClasses = null;
+		private Reptile buildReptile() {
+			Reptile newReptile = null;
+			reptileClasses = (reptileClasses == null) ? getClassList("reptiles") : reptileClasses;
+			if ( reptileClasses.isEmpty()) return null;
+			String name = reptileClasses.get(ThreadLocalRandom.current().nextInt(reptileClasses.size()));
+			try {
+				newReptile = (Reptile)Class.forName(name).newInstance();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return newReptile;
+		}
+	
 		private Animal buildDomestic() {
 			Domesticatable newAnimal = null;
-			
 			switch (ThreadLocalRandom.current().nextInt(4)) {
-				default:
-				case 0:
-					newAnimal = new Dog();
-				case 1:
-					newAnimal = new Cat();
-				case 2:
-					newAnimal = new Horse();
-				}
-				
-			return (Animal)newAnimal;
-			
-		};
-		
-		private List<String> getClassList(String subDir){ 
-			// this will give us a file representation of the package name
+			default:
+			case 0:
+				newAnimal = new Dog(); break;
+			case 1:
+				newAnimal = new Cat(); break;
+			case 2:
+				newAnimal = new Horse(); break;
+			}
+
+			return (Animal) newAnimal;
+		}
+	
+		private List<String> listFilesUsingLambdas(String subDir) {
 			Path dir = Paths.get(parentDir.toString(), subDir);
 			List<String> classes = new CopyOnWriteArrayList<>();
-			String pkg = parentPkg + "." + subDir; // has to be a DOT - NOT anything else!!
-			if(debug) {
+			String pkg = parentPkg + "." + subDir;
+	
+			try {
+				Files.list(dir)
+					.filter(p -> Files.isRegularFile(p))// passing a functionality to a method called filter
+					.map(p -> p.getFileName().toString())
+					.forEach(s -> { String cls = s.substring(0, s.indexOf('.'));
+									cls = pkg + "." + cls;
+									classes.add(cls);
+									return;	});
+			} catch (IOException e) { e.printStackTrace(); }
+			return classes;
+		}
+	
+	private List<String> getClassList(String subDir) {
+//			List<String> classes = listFilesUsingLambdas(subDir);
+			Path dir = Paths.get(parentDir.toString(), subDir);
+			List<String> classes = new CopyOnWriteArrayList<>();
+			String pkg = parentPkg + "." + subDir;
+			if (debug) {
 				System.out.println(dir);
 				System.out.println(pkg);
 			}
-			File entry = dir.toFile(); // just a convertion function
-			if(entry.isDirectory()) {
+			
+			File entry = dir.toFile();
+			if (entry.isDirectory()) {
 				String[] entryNames = entry.list();
-				for(String fileName : entryNames) {
-						String clsName = pkg + '.' + fileName.substring(0, fileName.indexOf("."));
-						if(debug) System.out.println("Found: " + clsName);
-						classes.add(clsName);
+				for (String fileName : entryNames) {
+					String clsName = pkg + "." + fileName.substring(0, fileName.indexOf("."));
+//					if (debug) System.out.println("Found: " + clsName);
+					classes.add(clsName);
 				}
 			}
-			// Loop through the list and attempt to instantiate the class
-			for(String clsName : classes) {
+	
+		// Loop through the list and attempt to instantiate the class
+			for (String clsName : classes) {
 				Animal a = null;
 				try {
 					a = (Animal)Class.forName(clsName).newInstance();
@@ -293,31 +290,28 @@ public class RandomAnimalBuilder {
 							classes.remove(clsName);
 						}
 					}
-					
-				}catch(ClassNotFoundException | IllegalAccessException e) {
-					e.printStackTrace();
+				} catch (ClassNotFoundException | IllegalAccessException e) {
+//					e.printStackTrace();
+					System.out.println(e + ": " + e.getCause());
 					System.exit(1);
-				}catch(InstantiationException ie) {
-					// Remove abstract classes or interfaces
-					if(debug) System.out.println("Removing " + clsName + " from class list");
+				} catch (InstantiationException ie) {
+					// Remove abstract classes or interfaces from the list
+					if (debug) System.out.println("Removing " + clsName + " from class list");
 					classes.remove(clsName);
+//					System.out.println(ie + ": " + ie.getCause());
 				}
 			}
-			
-			return classes;
-		}; // getClassList
+		
+	return classes;
+		}
 		
 		public void testGetClassList(String subDir) {
-			debug = true; // this will show the file path in the console - turn on
+			debug = true;
 			List<String> classes = getClassList(subDir);
-			for( String s : classes ) {
+			for (String s : classes) {
 				System.out.println(s);
 			}
-			debug = false; // turn off
-		}; // closes testGetClassList
-		
-		
-		
-
-};// closes class                             
+			debug = false;
+		}
 	
+};// closes class    

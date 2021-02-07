@@ -3,13 +3,10 @@ package israels.core_java.common.animal.mammals;
 import israels.core_java.common.animal.Sex;
 import israels.core_java.common.animal.ecosystem.EcosystemType;
 
-public class Bear extends Carnivora {
+public class Elk extends Mammal{
 
-// NOTES ABOUT GIZZLY BEARS:
-	
-	
 	{
-		MAX_AGE = 30;
+		MAX_AGE = 13;
 		FEMALE_MATURITY = 4;
 		MALE_MATURITY = 4; 
 		BIRTH_WEIGHT = 1;
@@ -20,15 +17,15 @@ public class Bear extends Carnivora {
 		TEETH = 42;
 	}
 	
-	public Bear() {
+	public Elk() {
 		// remember private makes it invisible to other classes so we can't get the variable: type inside of Animal
-		setType("bear"); // THIS IS WHY WE USE PROTECTED in Animal Class!!
+		setType("elk"); // THIS IS WHY WE USE PROTECTED in Animal Class!!
 		setEcosystem(EcosystemType.YELLOWSTONE);
 		setMaxRunningSpeed(35);
-		prey.add("");
+//		prey.add("");
 	};
 	
-	public Bear(int age, int weight, Sex sex) {
+	public Elk(int age, int weight, Sex sex) {
 		this();
 		setAge(age);
 		setWeight(weight);
@@ -37,7 +34,7 @@ public class Bear extends Carnivora {
 	
 	@Override
 	public void sleep() {
-		System.out.print(this + " sleeping in a cave ");
+		System.out.print(this + " sleeping with herd ");
 		while (getHealth() < 3) {
 			System.out.print(getHealth() + " ");
 			try {

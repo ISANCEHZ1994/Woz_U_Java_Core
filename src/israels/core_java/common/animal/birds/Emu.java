@@ -46,7 +46,7 @@ public class Emu extends Bird{
 		// Animal method overrides
 		// Mammal,  Bird, Fish or Reptile method overrides
 		// Support interface
-		public boolean canFly() { return true; };
+		public boolean canFly() { return false; };
 		public boolean canRun() { return true; };
 		public boolean canSwim() { return false; };
 	
