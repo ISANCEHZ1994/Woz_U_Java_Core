@@ -40,15 +40,15 @@ public class Elephant extends Herders{
 	// Class Animal OVERRIDES
 	@Override
 	public void eat() {
-		System.out.println(getType() + " chomping tree branches");
+		System.out.println(getExtendedType() + " chomping tree branches");
 	};
 	@Override
 	public void move() {
-		System.out.println(getType() + " shuffling ponderously");
+		System.out.println(getExtendedType() + " shuffling ponderously");
 	};
 	@Override
 	public void sleep() {
-		System.out.println(getType() + " sleeping under a starlit sky");
+		System.out.println(getExtendedType() + " sleeping under a starlit sky");
 		setHealth((byte)5);
 	};
 	
@@ -57,7 +57,7 @@ public class Elephant extends Herders{
 	// reproduce was taken from Animal 
 	public Elephant reproduce() {
 		if (getSex() == Sex.MALE) {
-			System.out.println("Male " + getType() + " looks for female " + getType());
+			System.out.println("Male " + getExtendedType() + " looks for female " + getExtendedType());
 			return null;
 		}
 		if(getAge() > MATURITY){
@@ -68,7 +68,7 @@ public class Elephant extends Herders{
 			return baby;	
 			}	
 				else {
-			System.out.println("Female " + getType() + " is not old enough.");
+			System.out.println("Female " + getExtendedType() + " is not old enough.");
 			return null;
 		}
 	};

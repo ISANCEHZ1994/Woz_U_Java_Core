@@ -1,14 +1,25 @@
 package israels.core_java.common.animal.ecosystem;
 
+import java.util.List;
+
+import israels.core_java.common.animal.Animal;
+
 public class JavaCoreProject {
 
 	public static void main(String[] args) {
 
 		Yellowstone yellowstone = new Yellowstone();
+		
 		yellowstone.listPopulation();
 		
-		yellowstone.test();
 		
+		List<Animal> nearby = yellowstone.getNearbyAnimals();
+		System.out.println("Nearby animals:\n " + nearby + "\n" );
+		
+		yellowstone.dawnBreak();
+//		List<Animal> nearby = yellowstone.findNearbyAnimal();
+//		System.out.println("Nearby animals(2) " + nearby);
+//		
 	}
 	
 	

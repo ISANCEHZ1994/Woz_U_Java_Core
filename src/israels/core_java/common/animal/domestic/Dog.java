@@ -86,7 +86,7 @@ public class Dog extends Carnivora implements Pet{ // To use interface we MUST I
 	public Dog[] reproduce(int number) {
 		Dog[] litter = new Dog[number]; 
 		if (getSex() == Sex.MALE) {
-			System.out.println("Male " + getType() + " looks for female " + getType());
+			System.out.println("Male " + getExtendedType() + " looks for female " + getExtendedType());
 			return null;
 		}  
 		if(getAge() > MATURITY) {

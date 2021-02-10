@@ -13,9 +13,9 @@ public abstract class Ecosystem { // at least 5 animals that live in Yellowstone
 	public EcosystemType getEcosystem() { return ecosystemType;}
 	
 	
-	List<Animal> nearbyAnimals = new ArrayList<>();
-	
-	
+	protected List<Animal> nearbyAnimals = new ArrayList<>();
+	public List<Animal> getNearbyAnimals() { return new ArrayList<Animal>(nearbyAnimals); }
+
 	
 	public String DESCRIPTION;
 	public String getDescrip() { return DESCRIPTION; };
@@ -27,8 +27,10 @@ public abstract class Ecosystem { // at least 5 animals that live in Yellowstone
 	public int getElevation() { return ELEVATION; };
 //	public int setElevation( int e ) { ELEVATION:e};
 	
+	
+	
 	public abstract void listPopulation();
-	public abstract void findNearbyAnimal();
+	public abstract void findNearbyAnimals();
 	
 	
 };

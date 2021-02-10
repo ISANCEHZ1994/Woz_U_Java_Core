@@ -48,7 +48,7 @@ public class Lion extends Carnivora{
 	
 	@Override
 	public void eat() {
-		System.out.println(getType() + " devouring zebras");
+		System.out.println(getExtendedType() + " devouring zebras");
 	};
 	
 	
@@ -57,10 +57,10 @@ public class Lion extends Carnivora{
 		if(getAge() > MAX_AGE) {
 			return;
 		}else if(getAge() > MAX_AGE - 2) {
-			System.out.println(getType() + "old lion moves very slowly");
+			System.out.println(getExtendedType() + "old lion moves very slowly");
 			changeHealth(-4);
 		}else if(getAge() > MATURITY) {
-			System.out.println(getType() + " is majestically prowling the pridelands");
+			System.out.println(getExtendedType() + " is majestically prowling the pridelands");
 			changeHealth(-2);
 		}else if(getAge() == 0) {
 			 System.out.println(" lion cub plahing with siblings");
@@ -71,7 +71,7 @@ public class Lion extends Carnivora{
 	
 	@Override
 	public void sleep() {
-		System.out.println(getType() + " sleeping with the pride");
+		System.out.println(getExtendedType() + " sleeping with the pride");
 	};
 	
 	

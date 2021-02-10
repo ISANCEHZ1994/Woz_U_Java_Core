@@ -73,10 +73,12 @@ public class Savannah extends Ecosystem {
 
 
 	@Override
-	public void findNearbyAnimal() {
+	public void findNearbyAnimals() {
 		// TODO Auto-generated method stub
 		
-	};
+	}
+
+
 	
 	
 	

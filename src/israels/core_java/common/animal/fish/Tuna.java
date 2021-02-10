@@ -24,7 +24,7 @@ public class Tuna extends Fish{
 
 	@Override
 	public void eat() {
-		System.out.println(getType() + " eats squid");
+		System.out.println(getExtendedType() + " eats squid");
 	};
 	
 //	@Override

@@ -32,7 +32,7 @@ public class Emu extends Bird{
 	 */
 		
 		public String toString() {
-			String result = getType() + "(" + getAge() + "yrs," + getWeight() + "lbs"; 
+			String result = getExtendedType() + "(" + getAge() + "yrs," + getWeight() + "lbs"; 
 			result += ", " + getSex().toString().charAt(0) + ")";
 			return result;
 		};
@@ -40,7 +40,7 @@ public class Emu extends Bird{
 		@Override
 		public void move() {
 			super.move();
-			System.out.println(getType() + " walking about the plains");
+			System.out.println(getExtendedType() + " walking about the plains");
 		}
 		// Object method overrides
 		// Animal method overrides

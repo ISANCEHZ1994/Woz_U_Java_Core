@@ -5,18 +5,9 @@
  */
 package israels.core_java.lesson09.dao;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.io.*;
+import java.nio.file.*;
+import java.util.*;
 
 import israels.core_java.common.animal.Animal;
 import israels.core_java.common.animal.Sex;
@@ -67,6 +58,16 @@ class FileAnimalDAO implements AnimalDAO {
 
 	@Override
 	public Animal find(String type, int age, int weight, Sex sex) {
+		String fileToFind = type + "_a" + age + "_w" + weight;
+		fileToFind += sex.toString().charAt(0) + ".data";
+		File directory = new File(daoDir.toString());
+		for(String fileName : directory.list()) {
+			if(fileName.equals(fileToFind)) {
+				Path pathname = Paths.get(directory.toString(), fileName);
+				Animal a = getAnimalFile(pathname.toString());
+				return a;
+			}
+		}
 		return null;
 	}
 

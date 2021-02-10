@@ -24,11 +24,11 @@ public abstract class Fish extends Animal{
 
 	@Override
 	public void move() {
-		System.out.println(getType() + " swimming in the water");
+		System.out.println(getExtendedType() + " swimming in the water");
 	};
 	@Override
 	public void sleep() {
-		System.out.println(getType() + " sleeping with its eyes open..creepy");
+		System.out.println(getExtendedType() + " sleeping with its eyes open..creepy");
 	};
 	
 	protected int setRandomWeightByAge(int a) { // void DOES NOT return anything so use int (INTEGER)

@@ -30,7 +30,7 @@ class MemoryCacheAnimalDAO implements AnimalDAO {
 	@Override
 	public Animal find(String type, int age, int weight, Sex sex) {
 		for (Animal a : animalListCache) {
-			if (a.getType().toLowerCase() == type.toLowerCase() &&
+			if (a.getExtendedType().toLowerCase() == type.toLowerCase() &&
 								a.getAge() == age &&
 								a.getWeight() == weight &&
 								a.getSex() == sex )	

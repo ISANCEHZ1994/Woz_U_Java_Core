@@ -51,7 +51,7 @@ public class Cheetah extends Carnivora {
 			else if (getAge() > MAX_AGE-2)
 				System.out.println("Old cheetah moves very slowly.");
 			else if (getAge() > MATURITY) 
-				System.out.println(getType() + " charging a herd of " + findPrey());
+				System.out.println(getExtendedType() + " charging a herd of " + findPrey());
 			else if (getAge() == 0)
 				System.out.println("Cheetah cub batting a stick");
 			else
@@ -82,7 +82,7 @@ public class Cheetah extends Carnivora {
 			if (getAge() >= MATURITY && getSex() == Sex.FEMALE) 
 				return new Cheetah();
 			else {
-				System.out.println(getType() + " not old enough or is male");
+				System.out.println(getExtendedType() + " not old enough or is male");
 				return null;
 			}
 		}
@@ -121,7 +121,7 @@ public class Cheetah extends Carnivora {
 
 			changeHealth(-1);
 			if (target != null) {
-				System.out.println(this.getType() + " is stalking a " + target.getType());
+				System.out.println(this.getExtendedType() + " is stalking a " + target.getExtendedType());
 				try {
 					Thread.sleep(700);
 				} catch (InterruptedException e) { e.printStackTrace(); }
@@ -154,11 +154,11 @@ public class Cheetah extends Carnivora {
 					&& ((age < 5 && probability > .7)
 					|| (age < 12 && probability > .4)
 					|| (age >= 12 && probability > .5) ) ) {
-					System.out.println(this +  " caught a " + target.getType() + " in the grass!");
-					this.preyCaught = target.getType();
+					System.out.println(this +  " caught a " + target.getExtendedType() + " in the grass!");
+					this.preyCaught = target.getExtendedType();
 					return true;
 				} else {
-					System.out.println(this + " could not catch the " + target.getType());
+					System.out.println(this + " could not catch the " + target.getExtendedType());
 					this.preyFound = null;
 					target.setTargeted(false);
 				}

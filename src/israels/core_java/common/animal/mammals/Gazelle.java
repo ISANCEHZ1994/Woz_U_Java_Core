@@ -24,16 +24,16 @@ public class Gazelle extends Mammal {
 	public void sleep() {
 		
 		
-		System.out.println(getType() + " sleeps for 5 mins.");
+		System.out.println(getExtendedType() + " sleeps for 5 mins.");
 		
 		
 	};
 	
 	public void eat() {
 		if(getAge() == 0) {
-			System.out.println(getType() + " nurses on mother's milk");
+			System.out.println(getExtendedType() + " nurses on mother's milk");
 		}else {
-			System.out.println(getType() + " eats peacefully on the plains..");
+			System.out.println(getExtendedType() + " eats peacefully on the plains..");
 		}
 		
 	};

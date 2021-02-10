@@ -52,7 +52,7 @@ public class Wolf extends Carnivora {
 			} catch (InterruptedException e) { e.printStackTrace(); }
 			changeHealth(1);
 		}
-		System.out.println(getHealth());
+		System.out.println("Health: " + getHealth());
 	}
 	
 	@Override
@@ -60,10 +60,10 @@ public class Wolf extends Carnivora {
 		if(getAge() > MAX_AGE) {
 			return;
 		}else if(getAge() > MAX_AGE - 2) {
-			System.out.println(getType() + "old wolf moves very slowly");
+			System.out.println(getExtendedType() + "old wolf moves very slowly");
 			changeHealth(-4);
 		}else if(getAge() > MATURITY) {
-			System.out.println(getType() + " moves swiftly and slient");
+			System.out.println(getExtendedType() + " moves swiftly and slient");
 			changeHealth(-2);
 		}else if(getAge() == 0) {
 			 System.out.println(" wolf cub plahing with siblings");

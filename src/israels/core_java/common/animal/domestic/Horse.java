@@ -37,15 +37,15 @@ public class Horse extends Mammal implements Nameable, Domesticatable{
 	
 	@Override
 	public void eat() {
-		System.out.println(getType() + " grazing and eating grass");
+		System.out.println(getExtendedType() + " grazing and eating grass");
 	};
 	@Override
 	public void move() {
-		System.out.println(getType() + " proudly stomps feet");
+		System.out.println(getExtendedType() + " proudly stomps feet");
 	};
 	@Override
 	public void sleep() {
-		System.out.println(getType() + " kneels before a beautiful night");
+		System.out.println(getExtendedType() + " kneels before a beautiful night");
 	}
 
 

@@ -20,15 +20,15 @@ public class Monkey extends Mammal{
 // --------------------------> METHOD SECTION <----------------------------------------------------------
 	@Override
 	public void eat() {
-		System.out.println(getType() + " eating bugs");
+		System.out.println(getExtendedType() + " eating bugs");
 	};
 	@Override
 	public void move() {
-		System.out.println(getType() + " monkeying around");
+		System.out.println(getExtendedType() + " monkeying around");
 	};
 	@Override
 	public void sleep() {
-		System.out.println(getType() + " sleeping after monkeying around");
+		System.out.println(getExtendedType() + " sleeping after monkeying around");
 	};
 	
 	

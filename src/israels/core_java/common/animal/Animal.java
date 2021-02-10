@@ -11,24 +11,15 @@ public class Animal implements Serializable {
 	// Variables with GETTERS && SETTERS
 	// static variables first
 	
+	
+	
 	// This is a static or class primitive variable
 	private static int count = 0; // static means there's only ONE copy of it 
 	public static int getCount() { return count; };
 	
 	// This is an INSTANCE REFERENCE VARIABLE
 	private String type;
-	public String getType() {
-		String t = type;
-		if (this.getAge() == 0 ) {
-			t = "baby " + type;
-		} else if (this.getAge() < MATURITY) {
-			t = "young " + type;
-		} else if (this.getAge() > MAX_AGE) {
-			t = "dead " + type;
-		}
-		return t;
-	};
-
+	public String getType(){ return type; }
 	final protected void setType( String t) { type = t; };
 	// we use protected - means that not only those from package 
 	// but ones that are extended to it - SUCH AS ELEPHANT Class! - ENCAPSOLATION
@@ -60,7 +51,6 @@ public class Animal implements Serializable {
 	protected int ADULT_MALE_MIN_WEIGHT = 120;
 	protected int ADULT_MALE_MAX_WEIGHT = 180;
 	protected int TEETH = 32;
-	
 	
 	public int getMaxAge() {return MAX_AGE;};
 
@@ -94,10 +84,17 @@ public class Animal implements Serializable {
 	public boolean isTargeted() { return targeted;};
 	public void setTargeted(boolean b) { targeted = b;};
 	
-	
 	private EcosystemType ecosystemType = EcosystemType.UNKNOWN;
 	public void setEcosystem(EcosystemType est) { ecosystemType = est;}
 	public EcosystemType getEcosystem() { return ecosystemType;}
+	
+	private int animalId = 0;
+	public void setAnimalId(int id) {
+		animalId = id;
+	}
+	public int getAnimalId() {
+		return animalId;
+	}
 	
 // --------------------------> CONSTRUCTOR SECTION <----------------------------------------------------------
 	static {
@@ -135,8 +132,8 @@ public class Animal implements Serializable {
 	// Override Object Methods
 	@Override
 	public String toString() { // this will change the outcomes of what was written in Classes.java file
-		String result = type + " Age:" + age + " Weight: " + weight;
-		result += " Sex: " + getSex().toString().charAt(0) + ")"; // All this does is return a CAPITAL F - because that's the only thing we set
+		String result = type + " Age: " + age + " Weight: " + weight;
+		result += " Sex: " + getSex().toString().charAt(0) + ") "; // All this does is return a CAPITAL F - because that's the only thing we set
 		return result;
 	};
 	
@@ -171,6 +168,19 @@ public class Animal implements Serializable {
 	}
 	
 	// Class Animal Methods
+	
+	public String getExtendedType() {
+		String t = type;
+		if (this.getAge() == 0 ) {
+			t = "baby " + type;
+		} else if (this.getAge() < MATURITY) {
+			t = "young " + type;
+		} else if (this.getAge() > MAX_AGE) {
+			t = "dead " + type;
+		}
+		return t;
+	};
+	
 	public void eat() {
 		System.out.println("a " + type + " is found eating");
 	};
@@ -199,6 +209,8 @@ public class Animal implements Serializable {
 		}
 		return result;
 	};
+	
+	
 	
 	// This is overloading because we are using the same name and changing the argument list
 	public void setRandomWeightByAge( // passing all these variables!
@@ -241,13 +253,13 @@ public class Animal implements Serializable {
 	
 	public Animal reproduce() {
 		if (sex == Sex.MALE) {
-			System.out.println("Male " + getType() + " looks for female " + getType());
+			System.out.println("Male " + getExtendedType() + " looks for female " + getExtendedType());
 			return null;
 		}
 		if(age > MATURITY){
 			return new Animal(0); // By default its ZERO but no harm in specifiying
 		}else {
-			System.out.println("Female " + getType() + " is not old enough.");
+			System.out.println("Female " + getExtendedType() + " is not old enough.");
 			return null;
 		}
 	};

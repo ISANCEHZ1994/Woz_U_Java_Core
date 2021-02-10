@@ -42,7 +42,7 @@ public class Bison extends Mammal {
 			} catch (InterruptedException e) { e.printStackTrace(); }
 			changeHealth(1);
 		}
-		System.out.println(getHealth());
+		System.out.println( "Health: " +  getHealth());
 	}
 	
 	@Override
@@ -50,10 +50,10 @@ public class Bison extends Mammal {
 		if(getAge() > MAX_AGE) {
 			return;
 		}else if(getAge() > MAX_AGE - 2) {
-			System.out.println(getType() + "old bear moves very slowly");
+			System.out.println(getExtendedType() + "old bear moves very slowly");
 			changeHealth(-4);
 		}else if(getAge() > MATURITY) {
-			System.out.println(getType() + " is roaming around the forest");
+			System.out.println(getExtendedType() + " is roaming around the forest");
 			changeHealth(-2);
 		}else if(getAge() == 0) {
 			 System.out.println(" bear cub playing with siblings");
@@ -61,4 +61,9 @@ public class Bison extends Mammal {
 			System.out.println("Young bear learning to sneak up on prey");
 		}
 	};
+	
+//	public void somethingHere() {
+//		if( getAge() )
+//	}
+	
 }

@@ -32,15 +32,15 @@ public class Swordfish extends Fish {
 		// Class Animal OVERRIDES
 		@Override
 		public void eat() {
-			System.out.println(getType() + " eating krill");
+			System.out.println(getExtendedType() + " eating krill");
 		};
 		@Override
 		public void move() {
-			System.out.println(getType() + " swims like a torpedo");
+			System.out.println(getExtendedType() + " swims like a torpedo");
 		};
 		@Override
 		public void sleep() {
-			System.out.println(getType() + " - what is sleep?");
+			System.out.println(getExtendedType() + " - what is sleep?");
 		};
 		
 

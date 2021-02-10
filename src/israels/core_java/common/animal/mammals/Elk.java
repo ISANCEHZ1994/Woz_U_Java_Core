@@ -35,7 +35,7 @@ public class Elk extends Mammal{
 	
 	@Override
 	public void sleep() {
-		System.out.print(this + " sleeping with herd ");
+		System.out.print(this + " sleeping with gang ");
 		while (getHealth() < 3) {
 			System.out.print(getHealth() + " ");
 			try {
@@ -43,7 +43,7 @@ public class Elk extends Mammal{
 			} catch (InterruptedException e) { e.printStackTrace(); }
 			changeHealth(1);
 		}
-		System.out.println(getHealth());
+		System.out.println( "Health: " +  getHealth());
 	}
 	
 	@Override
@@ -51,15 +51,15 @@ public class Elk extends Mammal{
 		if(getAge() > MAX_AGE) {
 			return;
 		}else if(getAge() > MAX_AGE - 2) {
-			System.out.println(getType() + "old bear moves very slowly");
+			System.out.println(getExtendedType() + "old elk moves very slowly");
 			changeHealth(-4);
 		}else if(getAge() > MATURITY) {
-			System.out.println(getType() + " is roaming around the forest");
+			System.out.println(getExtendedType() + " is roaming around the forest");
 			changeHealth(-2);
 		}else if(getAge() == 0) {
-			 System.out.println(" bear cub playing with siblings");
+			 System.out.println(" baby elk playing with siblings");
 		}else {
-			System.out.println("Young bear learning to sneak up on prey");
+			System.out.println("Young elk stomps gailiantly thru the forest");
 		}
 	};
 	

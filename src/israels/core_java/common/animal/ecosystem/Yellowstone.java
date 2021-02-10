@@ -42,11 +42,28 @@
  */
 
 package israels.core_java.common.animal.ecosystem;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+
+import israels.core_java.common.animal.Animal;
 import israels.core_java.common.animal.RandomAnimalBuilder;
+import israels.core_java.common.animal.Sex;
 import israels.core_java.common.animal.mammals.*;
+import israels.core_java.lesson09.dao.AnimalDAO;
+import israels.core_java.lesson09.dao.AnimalDaoFactory;
+import israels.core_java.lesson09.dao.DaoFactory;
+import israels.core_java.lesson09.dao.DataStoreNotFoundException;
 
 public class Yellowstone extends Ecosystem {
+	
+	List<Wolf> wolfPack = (List<Wolf>) new RandomAnimalBuilder(Wolf.class).build(6);
+	List<Bear> bearSleuth = (List<Bear>) new RandomAnimalBuilder(Bear.class).build(3);
+	List<Cougar> cougar = (List<Cougar>) new RandomAnimalBuilder(Cougar.class).build(3);
+	List<Bison> bisonHerd = (List<Bison>) new RandomAnimalBuilder(Bison.class).build(20); // 1200
+	List<Elk> elkGang = (List<Elk>) new RandomAnimalBuilder(Elk.class).build(20); //200
+	List<Moose> mooseHerd = (List<Moose>) new RandomAnimalBuilder(Moose.class).build(3);
 	
 	
 	{
@@ -59,57 +76,132 @@ public class Yellowstone extends Ecosystem {
 				+ "unpredictability characterizes Yellowstone's weather. "
 				+ "Expect big temperature swings, rain, or snow during every month of the year. "
 				+ "No matter when you visit, bring a warm jacket, rain gear, and lots of layers.";
-		
+		ELEVATION = 6_000;
 	}
 	
 	public Yellowstone() {
 		setEcosystem(EcosystemType.YELLOWSTONE);
-		ELEVATION = 6_000;
+		System.out.println("Yellowstone Park Created!");
+		System.out.println("=========================");
+		
+//		useFileDao();
+		findNearbyAnimals();
+//		dawnBreak();
+		
 	}
 
 	@Override
 	public void listPopulation() {
-		List<Wolf> wolfPack = (List<Wolf>) new RandomAnimalBuilder(Wolf.class).build(6);
-		List<Bear> bearSleuth = (List<Bear>) new RandomAnimalBuilder(Bear.class).build(3);
-		List<Cougar> cougar = (List<Cougar>) new RandomAnimalBuilder(Cougar.class).build(3);
-		List<Bison> bisonHerd = (List<Bison>) new RandomAnimalBuilder(Bison.class).build(20); // 1200
-		List<Elk> elkGang = (List<Elk>) new RandomAnimalBuilder(Elk.class).build(20); //200
-		List<Moose> mooseHerd = (List<Moose>) new RandomAnimalBuilder(Moose.class).build(3);
-		
+		System.out.println("Total Population of Yellowstone: ");
+		System.out.println();
 		System.out.println(wolfPack);
-		
-		System.out.println();
 		System.out.println(bearSleuth);
-		System.out.println();
 		System.out.println(cougar);
-		System.out.println();
 		System.out.println(bisonHerd);
-		System.out.println();
 		System.out.println(elkGang);
-		System.out.println();
 		System.out.println(mooseHerd);
-		System.out.println();
-		
-		System.out.println("=================================================================================================");
+		System.out.println("========================================================================================================================");
 	};
 
+	
 	@Override
-	public void findNearbyAnimal() {
+	public void findNearbyAnimals() { // ArrayList<Animal>
+		int[] alreadyAdded = new int[4];
+		
+			for(int i = 0; i < 4; i++) { // we only want at least 4 animals nearby not ALL the animals - NO predators!
+				
+				int probability = ThreadLocalRandom.current().nextInt(1,6);
+				if(Arrays.binarySearch(alreadyAdded, 0, 2, probability) >= 0 ) {
+					i--;
+					continue;
+				}
+				switch(probability) {
+				case 1:
+					nearbyAnimals.addAll(elkGang);
+					break; // BREAK or else we FALL
+				case 2:
+					nearbyAnimals.addAll(bisonHerd);
+					break;
+				default:
+					nearbyAnimals.addAll(mooseHerd);
+					break;
+				}
+				alreadyAdded[i] = probability;
+			}
 			
 	};
+
+	
+	public void dawnBreak() {
+		System.out.println("It's now dawn at Yellowstone Park...");
+		
+		for( Elk e : elkGang) {
+			if(e.getAge() < 18) { // NOTE: For some reason this sets the LIMIT for age
+				// since it will never reach that 18 FOR SOME REASON - we don't see the below text
+				System.out.println(e + ": ");
+				e.sleep();
+			}else if( e.getSex() == Sex.MALE && e.getWeight() > 650) {
+				System.out.println(e + " standing watch over the gang");
+			}
+		}
+		
+		System.out.println("Mother and baby bear");
+		for(Bear b : bearSleuth) {
+			b.sleep();
+		}
+		
+		System.out.println("\nDawn is BROKEN");
+		for(Moose m : mooseHerd) {
+			m.move();
+		}
+	};
+	
 	
 	public String escapeChance() {
 		return null;
 	};
 	
-	public void test() {
-		
-		Wolf singleWolf = new Wolf();
-		singleWolf.setAge(5);
-		singleWolf.setWeight(120);
-		singleWolf.hunt();
-		System.out.println(singleWolf);
-	}
+//	public void test() {
+//		
+//		Wolf singleWolf = new Wolf();
+//		singleWolf.setAge(5);
+//		singleWolf.setWeight(120);
+//		singleWolf.hunt();
+//		System.out.println(singleWolf);
+//	}
 	
+	private void useFileDao() {
+		DaoFactory factory = new AnimalDaoFactory();
+		AnimalDAO dao = null;
+		try {
+			dao = factory.getDao("file");
+		} catch (DataStoreNotFoundException e) {
+			// works when we dont have this lol
+			
+			System.out.println(e);
+			return;
+			
+		}
+		dao.setDebug(false);
+		
+//			// Create a list of animals to use with the dao:
+//				List<Animal> lionPride = (List<Animal>) new RandomAnimalBuilder(Lion.class).build(7);	
+//				dao.setDebug(true);
+//				
+//				for(Animal lion : lionPride) {
+//					dao.create(lion);
+//				}
+				
+				System.out.println("--------------------------------------------------\n");
+				//Retrieve the lions from the dao:
+				for(Animal lion : dao.findAll()) {
+					System.out.println(lion);
+				}
+				
+//				//Delete all the files
+//				for(Animal lion : dao.findAll()) {
+//					dao.delete(lion);
+//				}
+		}
 	
 };

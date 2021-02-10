@@ -17,15 +17,15 @@ public class Gorilla extends Mammal{
 // --------------------------> METHOD SECTION <----------------------------------------------------------
 	@Override
 	public void eat() {
-		System.out.println(getType() + " eats banannas");
+		System.out.println(getExtendedType() + " eats banannas");
 	};
 	@Override
 	public void move() {
-		System.out.println(getType() + " moves around terrority");
+		System.out.println(getExtendedType() + " moves around terrority");
 	};
 	@Override
 	public void sleep() {
-		System.out.println(getType() + " sleeping after protecting pride");
+		System.out.println(getExtendedType() + " sleeping after protecting pride");
 	};
 	
 	

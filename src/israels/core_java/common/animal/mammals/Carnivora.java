@@ -37,9 +37,9 @@ public abstract class Carnivora extends Mammal implements Carnivore {
 	@Override
 	public void eat() {
 		if(preyCaught == null || preyCaught.isEmpty()) {
-			System.out.println(getType() + " has nothing to eat!!");
+			System.out.println(getExtendedType() + " has nothing to eat!!");
 		}else {
-			System.out.println(getType() + " eats a " + preyCaught);
+			System.out.println(getExtendedType() + " eats a " + preyCaught);
 			preyCaught = null;
 		}
 	};
@@ -94,7 +94,7 @@ public abstract class Carnivora extends Mammal implements Carnivore {
 		// In a loop create a list of possible targets
 		for( Animal animal : nearbyAnimals) {
 			for(String type : prey) { // prey is coming from the(at the) top variable - prey
-				if(animal.getType().contains(type)) {
+				if(animal.getExtendedType().contains(type)) {
 					System.out.print(animal + ", ");
 					possibleTargets.add(animal);
 				};
@@ -128,7 +128,7 @@ public abstract class Carnivora extends Mammal implements Carnivore {
 					preyFound = null;
 				}else {
 					target.setTargeted(true);
-					preyFound = target.getType();
+					preyFound = target.getExtendedType();
 					System.out.println(this + " selected a " + target);
 				}
 				
@@ -141,7 +141,7 @@ public abstract class Carnivora extends Mammal implements Carnivore {
 	@Override
 	public boolean catchPrey(Animal target) {
 		if(preyFound == null || preyFound.isEmpty()) {
-			System.out.println(getType() + " has not found food yet!");
+			System.out.println(getExtendedType() + " has not found food yet!");
 			return false;
 		}else {
 			double probability = Math.random();

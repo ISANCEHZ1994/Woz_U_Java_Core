@@ -51,7 +51,7 @@ public class Cougar extends Carnivora {
 				} catch (InterruptedException e) { e.printStackTrace(); }
 				changeHealth(1);
 			}
-			System.out.println(getHealth());
+			System.out.println("Health: " + getHealth());
 		}
 		
 		@Override
@@ -59,10 +59,10 @@ public class Cougar extends Carnivora {
 			if(getAge() > MAX_AGE) {
 				return;
 			}else if(getAge() > MAX_AGE - 2) {
-				System.out.println(getType() + "old cougar moves very slowly");
+				System.out.println(getExtendedType() + "old cougar moves very slowly");
 				changeHealth(-4);
 			}else if(getAge() > MATURITY) {
-				System.out.println(getType() + " moves swiftly and slient");
+				System.out.println(getExtendedType() + " moves swiftly and slient");
 				changeHealth(-2);
 			}else if(getAge() == 0) {
 				 System.out.println(" cougar cub plahing with siblings");

@@ -12,7 +12,7 @@ public abstract class Bird extends Animal {
 	
 	@Override
 	public String toString() {
-		String result = getType() + "(" + getAge() + "yrs," + getWeight() + " g"; 
+		String result = getExtendedType() + "(" + getAge() + "yrs," + getWeight() + " g"; 
 		result += ", " + getSex().toString().charAt(0) + ")";
 		return result;
 	};
@@ -28,11 +28,11 @@ public abstract class Bird extends Animal {
 	@Override
 	public void move() {
 		if(canFly()) {
-			System.out.println(getType() + " flying!");
+			System.out.println(getExtendedType() + " flying!");
 		}else if(canRun()) {
-			System.out.println(getType() + " running!");
+			System.out.println(getExtendedType() + " running!");
 		}else if(canSwim()) {
-			System.out.println(getType() + " swimming!");
+			System.out.println(getExtendedType() + " swimming!");
 		}else {
 			throw new RuntimeException("bird can't fly, run nor swim");
 		}
@@ -40,7 +40,7 @@ public abstract class Bird extends Animal {
 	
 	@Override
 	public void sleep() {
-		System.out.println(getType() + " is found sleeping in a nest!");
+		System.out.println(getExtendedType() + " is found sleeping in a nest!");
 	}
 	
 	
