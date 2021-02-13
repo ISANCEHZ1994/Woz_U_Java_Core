@@ -1,6 +1,8 @@
 package israels.core_java.common.animal.domestic;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+import israels.core_java.common.animal.Animal;
 import israels.core_java.common.animal.Pet;
 import israels.core_java.common.animal.Sex;
 import israels.core_java.common.animal.birds.Raptor;
@@ -103,5 +105,11 @@ public class Dog extends Carnivora implements Pet{ // To use interface we MUST I
 		return litter;
 	}; // closes Reproduce
 	
+	
+	@Override
+	public void hunt(List<? extends Animal> nearbyAnimals) {
+		if (getAge() > MAX_AGE) return;		// the hunter is dead
+		hunt();
+	}
 	
 }; // Closes Dog Class

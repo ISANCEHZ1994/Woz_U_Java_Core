@@ -1,5 +1,8 @@
 package israels.core_java.common.animal.mammals;
 
+import java.util.List;
+
+import israels.core_java.common.animal.Animal;
 import israels.core_java.common.animal.Sex;
 import israels.core_java.common.animal.ecosystem.EcosystemType;
 
@@ -69,6 +72,12 @@ public class Bear extends Carnivora {
 		}else {
 			System.out.println("Young bear learning to sneak up on prey");
 		}
-	};
+	}
+
+	@Override
+	public void hunt(List<? extends Animal> nearbyAnimals) {
+		if (getAge() > MAX_AGE) return;		// the hunter is dead
+		hunt();
+	}
 	
 }

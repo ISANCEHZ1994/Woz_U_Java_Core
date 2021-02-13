@@ -1,6 +1,9 @@
 
 
 package israels.core_java.common.animal.mammals;
+import java.util.List;
+
+import israels.core_java.common.animal.Animal;
 import israels.core_java.common.animal.Sex;
 
 //import israels.core_java.common.animal.mammals;
@@ -72,7 +75,13 @@ public class Lion extends Carnivora{
 	@Override
 	public void sleep() {
 		System.out.println(getExtendedType() + " sleeping with the pride");
-	};
+	}
+	
+	@Override
+	public void hunt(List<? extends Animal> nearbyAnimals) {
+		if (getAge() > MAX_AGE) return;		// the hunter is dead
+		hunt();
+	}
 	
 	
 };

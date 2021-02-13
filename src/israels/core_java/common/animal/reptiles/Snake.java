@@ -1,5 +1,9 @@
 package israels.core_java.common.animal.reptiles;
 
+import java.util.List;
+
+import israels.core_java.common.animal.Animal;
+
 public class Snake extends Reptile {
 
 	public Snake() {
@@ -20,5 +24,11 @@ public class Snake extends Reptile {
 //	public void move() {
 //		System.out.println(" can move at 22mph");
 //	}
+	
+	@Override
+	public void hunt(List<? extends Animal> nearbyAnimals) {
+		if (getAge() > MAX_AGE) return;		// the hunter is dead
+		hunt();
+	}
 
 }

@@ -46,21 +46,34 @@ public class Elk extends Mammal{
 		System.out.println( "Health: " +  getHealth());
 	}
 	
+//	@Override
+//	public void move() {
+//		if(getAge() > MAX_AGE) {
+//			return;
+//		}else if(getAge() > MAX_AGE - 2) {
+//			System.out.println(getExtendedType() + "old elk moves very slowly");
+//			changeHealth(-4);
+//		}else if(getAge() > MATURITY) {
+//			System.out.println(getExtendedType() + " is roaming around the forest");
+//			changeHealth(-2);
+//		}else if(getAge() == 0) {
+//			 System.out.println(" baby elk playing with siblings");
+//		}else {
+//			System.out.println("Young elk stomps gailiantly thru the forest");
+//		}
+//	};
+	
 	@Override
 	public void move() {
-		if(getAge() > MAX_AGE) {
-			return;
-		}else if(getAge() > MAX_AGE - 2) {
-			System.out.println(getExtendedType() + "old elk moves very slowly");
-			changeHealth(-4);
-		}else if(getAge() > MATURITY) {
-			System.out.println(getExtendedType() + " is roaming around the forest");
-			changeHealth(-2);
-		}else if(getAge() == 0) {
-			 System.out.println(" baby elk playing with siblings");
+		if(isRunning()) {
+			super.move();
+			System.out.println(getExtendedType() + " running for its life!!");
+			changeHealth(-3);
 		}else {
-			System.out.println("Young elk stomps gailiantly thru the forest");
+			System.out.println(getExtendedType() + " walking slowly with the herd to find new grazing lands");
+			changeHealth(-1);
 		}
-	};
+	}
+	
 	
 }

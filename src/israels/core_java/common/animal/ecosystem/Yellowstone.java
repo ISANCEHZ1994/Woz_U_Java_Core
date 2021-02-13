@@ -48,6 +48,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import israels.core_java.common.animal.Animal;
+import israels.core_java.common.animal.Carnivore;
 import israels.core_java.common.animal.RandomAnimalBuilder;
 import israels.core_java.common.animal.Sex;
 import israels.core_java.common.animal.mammals.*;
@@ -169,6 +170,53 @@ public class Yellowstone extends Ecosystem {
 //		singleWolf.hunt();
 //		System.out.println(singleWolf);
 //	}
+	
+	private class HuntingThread implements Runnable{ // creating another class WITHIN a class
+		
+		Carnivore hunter = null;
+		List<? extends Animal> hunted = null;
+		
+		HuntingThread(Carnivore c, List<? extends Animal> targets){
+			hunter = c;
+			hunted = targets;
+			
+		};
+		
+		@Override 
+		public void run() {
+			hunter.hunt(hunted); // 
+		};
+		
+		
+	};
+	
+	public void theWolfsAreHungry() { // multithreaded
+		Wolf cub = wolfPack.get(0);
+		Wolf mother = wolfPack.get(1);
+		
+		mother.move();
+		cub.move();
+		
+		Thread t = new Thread(new HuntingThread(mother, elkGang));
+		t.start();
+		System.out.println();
+		
+		for(Elk e : elkGang ) {
+			e.setRunning(true);
+			e.move();
+		}
+		try {
+			Thread.sleep(5000);
+		}catch(InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		String food = mother.getPreyCaugth();
+		if(food != null) {
+			cub.eat(food);
+		}
+		
+	};
 	
 	private void useFileDao() {
 		DaoFactory factory = new AnimalDaoFactory();

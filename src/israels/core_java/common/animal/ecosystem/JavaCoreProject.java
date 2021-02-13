@@ -10,16 +10,17 @@ public class JavaCoreProject {
 
 		Yellowstone yellowstone = new Yellowstone();
 		
-		yellowstone.listPopulation();
-		
-		
-		List<Animal> nearby = yellowstone.getNearbyAnimals();
-		System.out.println("Nearby animals:\n " + nearby + "\n" );
-		
-		yellowstone.dawnBreak();
-//		List<Animal> nearby = yellowstone.findNearbyAnimal();
-//		System.out.println("Nearby animals(2) " + nearby);
+//		yellowstone.listPopulation();
 //		
+//		
+//		List<Animal> nearby = yellowstone.getNearbyAnimals();
+//		System.out.println("Nearby animals:\n " + nearby + "\n" );
+//		
+//		yellowstone.dawnBreak();
+		
+		
+		yellowstone.theWolfsAreHungry();
+		
 	}
 	
 	

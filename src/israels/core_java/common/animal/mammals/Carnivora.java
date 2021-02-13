@@ -24,6 +24,9 @@ public abstract class Carnivora extends Mammal implements Carnivore {
 	protected transient String preyFound = null; // note: not nessesary to say null - itll do it by default but good practice!
 	protected transient String preyCaught = null; 
 	
+	public String getPreyCaugth() {
+		return preyCaught;
+	}
 // --------------------------> CONSTRUCTOR SECTION <----------------------------------------------------------
 	
 	public Carnivora() {

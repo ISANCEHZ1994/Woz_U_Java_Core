@@ -1,4 +1,7 @@
 package israels.core_java.common.animal.domestic;
+import java.util.List;
+
+import israels.core_java.common.animal.Animal;
 import israels.core_java.common.animal.Pet;
 import israels.core_java.common.animal.mammals.Carnivora;
 
@@ -45,6 +48,12 @@ public class Cat extends Carnivora implements Pet{ // To use interface we MUST I
 		String describe = name + " the" + breed;
 		System.out.println(describe + "contemplates your death, WATCH OUT!");
 	};
+	
+	@Override
+	public void hunt(List<? extends Animal> nearbyAnimals) {
+		if (getAge() > MAX_AGE) return;		// the hunter is dead
+		hunt();
+	}
 	
 	
 };

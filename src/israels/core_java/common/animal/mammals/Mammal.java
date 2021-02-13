@@ -13,6 +13,15 @@ public abstract class Mammal extends Animal {
 	
 	};
 	
+	private transient boolean running = false;
+	public boolean isRunning() {
+		return running;
+	}
+	public void setRunning(boolean r) {
+		running = r;
+	}
+	
+	
 	public Mammal() {
 		setType("uknown mammal");
 	};

@@ -1,5 +1,7 @@
 package israels.core_java.common.animal.birds;
 
+import java.util.List;
+
 import israels.core_java.common.animal.Animal;
 
 public class Hawk extends Raptor {
@@ -34,6 +36,12 @@ public class Hawk extends Raptor {
 	public boolean canRun() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	@Override
+	public void hunt(List<? extends Animal> nearbyAnimals) {
+		if (getAge() > MAX_AGE) return;		// the hunter is dead
+		hunt();
 	}
 
 //	@Override

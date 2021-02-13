@@ -96,6 +96,7 @@ public class Cheetah extends Carnivora {
 		}
 		
 		// Carnivore overload
+		// USE THIS FOR PROJECT!
 		public void hunt(List<? extends Animal> nearbyAnimals) {
 			
 			if (getAge() > MAX_AGE) {
